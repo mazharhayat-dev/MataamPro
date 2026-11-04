@@ -1,0 +1,92 @@
+@page
+@model MataamPro.Pages.Dashboard.IndexModel
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<MataamPro.SharedResource> T
+@{
+    ViewData["Title"] = T["Dashboard"];
+}
+
+<div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <div>
+        <p class="mb-2 text-sm font-semibold uppercase tracking-wider text-saudi">MataamPro · KSA</p>
+        <h1 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">@T["Dashboard"]</h1>
+        <p class="mt-2 text-slate-500">@DateTime.Now.ToString("dddd, dd MMMM yyyy")</p>
+    </div>
+    <a asp-page="/Orders/Create" class="rounded-xl bg-saudi px-5 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-900/15 hover:bg-emerald-800">+ @T["NewOrder"]</a>
+</div>
+
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="card p-5">
+        <p class="text-sm font-medium text-slate-500">@T["TodaySales"]</p>
+        <p class="mt-3 text-3xl font-extrabold text-slate-900">@Model.SalesToday.ToString("N2") <small class="text-sm font-bold text-saudi">@T["SaudiRiyal"]</small></p>
+        <p class="mt-2 text-xs text-slate-400">Net before VAT</p>
+    </div>
+    <div class="card p-5">
+        <p class="text-sm font-medium text-slate-500">@T["TotalOrders"]</p>
+        <p class="mt-3 text-3xl font-extrabold text-slate-900">@Model.OrdersToday</p>
+        <p class="mt-2 text-xs text-slate-400">Today</p>
+    </div>
+    <div class="card p-5">
+        <p class="text-sm font-medium text-slate-500">@T["Revenue"]</p>
+        <p class="mt-3 text-3xl font-extrabold text-saudi">@Model.RevenueToday.ToString("N2") <small class="text-sm font-bold">@T["SaudiRiyal"]</small></p>
+        <p class="mt-2 text-xs text-slate-400">Including VAT 15%</p>
+    </div>
+    <div class="card p-5">
+        <p class="text-sm font-medium text-slate-500">@T["Vat"]</p>
+        <p class="mt-3 text-3xl font-extrabold text-gold">@Model.VatToday.ToString("N2") <small class="text-sm font-bold text-slate-500">@T["SaudiRiyal"]</small></p>
+        <p class="mt-2 text-xs text-slate-400">Tax collected today</p>
+    </div>
+</div>
+
+<div class="mt-8 grid gap-6 lg:grid-cols-[1fr_330px]">
+    <section class="card overflow-hidden">
+        <div class="flex items-center justify-between border-b border-slate-100 p-5">
+            <h2 class="font-bold">@T["RecentOrders"]</h2>
+            <a asp-page="/Orders/Index" class="text-sm font-bold text-saudi">@T["ViewAll"] →</a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-start text-sm">
+                <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+                    <tr>
+                        <th class="px-5 py-3">#</th>
+                        <th class="px-5 py-3">@T["Customer"]</th>
+                        <th class="px-5 py-3">@T["Table"]</th>
+                        <th class="px-5 py-3">@T["Price"]</th>
+                        <th class="px-5 py-3">@T["Status"]</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    @foreach (var order in Model.RecentOrders)
+                    {
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-5 py-4 font-bold text-saudi"><a asp-page="/Orders/Details" asp-route-id="@order.Id">#@order.Id.ToString("D4")</a></td>
+                            <td class="px-5 py-4">@(string.IsNullOrWhiteSpace(order.TableNo) ? order.OrderType : order.TableNo)</td>
+                            <td class="px-5 py-4 font-semibold">@order.TotalAmount.ToString("N2") @T["SaudiRiyal"]</td>
+                            <td class="px-5 py-4"><span class="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700">@order.Status</span></td>
+                        </tr>
+                    }
+                    @if (!Model.RecentOrders.Any())
+                    {
+                        <tr><td colspan="5" class="px-5 py-12 text-center text-slate-400">@T["NoOrders"]</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <aside class="space-y-5">
+        <div class="card p-5">
+            <h2 class="font-bold">@T["QuickActions"]</h2>
+            <div class="mt-5 space-y-3">
+                <a asp-page="/Orders/Create" class="flex items-center justify-between rounded-xl bg-emerald-50 p-4 font-semibold text-saudi">@T["NewOrder"] <span>→</span></a>
+                <a asp-page="/Menus/Create" class="flex items-center justify-between rounded-xl bg-amber-50 p-4 font-semibold text-amber-800">@T["AddMenuItem"] <span>→</span></a>
+                <a asp-page="/Reports/Index" class="flex items-center justify-between rounded-xl bg-slate-50 p-4 font-semibold text-slate-700">@T["DailySales"] <span>→</span></a>
+            </div>
+        </div>
+        <div class="card p-5">
+            <p class="text-sm text-slate-500">Available menu items</p>
+            <p class="mt-2 text-2xl font-extrabold">@Model.MenusCount</p>
+            <p class="mt-4 text-sm text-slate-500">Low stock alerts</p>
+            <p class="mt-2 text-2xl font-extrabold text-amber-700">@Model.LowStockCount</p>
+        </div>
+    </aside>
+</div>

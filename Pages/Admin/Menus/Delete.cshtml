@@ -1,0 +1,27 @@
+@page "{id:int}"
+@model MataamPro.Pages.Admin.Menus.DeleteModel
+@using MataamPro.Services
+@inject IWebHostEnvironment Environment
+@{
+    ViewData["Title"] = "Delete Menu";
+}
+
+<div class="mx-auto max-w-3xl">
+    <div class="mb-8">
+        <a asp-page="Index" class="text-sm font-semibold text-saudi">← Menu list</a>
+        <h1 class="mt-3 text-3xl font-extrabold">Delete menu item</h1>
+    </div>
+    <section class="card overflow-hidden">
+        <img src="@MenuImageHelper.GetUrl(Model.Menu?.ImageUrl, Environment)" asp-append-version="true" class="h-56 w-full object-cover" alt="@Model.Menu?.NameEn" />
+        <div class="p-6">
+            <h2 class="text-2xl font-extrabold">@Model.Menu?.NameEn</h2>
+            <p class="mt-1 text-slate-500">@Model.Menu?.NameAr</p>
+            <p class="mt-4">@Model.Menu?.Description</p>
+            <p class="mt-3 font-bold">@Model.Menu?.Price.ToString("N2") SAR</p>
+            <form method="post" class="mt-6 flex gap-3">
+                <button type="submit" class="rounded-xl bg-red-600 px-5 py-3 text-sm font-bold text-white">Delete</button>
+                <a asp-page="Index" class="rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold">Cancel</a>
+            </form>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,79 @@
+@using System.Globalization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<MataamPro.SharedResource> T
+@{
+    var isArabic = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar";
+    var culture = isArabic ? "en-US" : "ar-SA";
+    var returnUrl = Context.Request.PathBase + Context.Request.Path + Context.Request.QueryString;
+    var languageLabel = isArabic ? "EN" : "العربية";
+    var direction = isArabic ? "rtl" : "ltr";
+    var language = isArabic ? "ar" : "en";
+    var currentPath = Context.Request.Path.Value ?? "/";
+    string NavClass(string href)
+    {
+        var active = href == "/Dashboard"
+            ? currentPath is "/" or "/Index" || currentPath.StartsWith("/Dashboard", StringComparison.OrdinalIgnoreCase)
+            : href == "/Orders"
+                ? currentPath.StartsWith("/Orders", StringComparison.OrdinalIgnoreCase) && !currentPath.StartsWith("/Orders/Create", StringComparison.OrdinalIgnoreCase)
+                : currentPath.Equals(href, StringComparison.OrdinalIgnoreCase) || currentPath.StartsWith(href + "/", StringComparison.OrdinalIgnoreCase);
+        return active ? "nav-link is-active" : "nav-link";
+    }
+}
+<!DOCTYPE html>
+<html lang="@language" dir="@direction">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "POS") · MataamPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{saudi:'#006C35',gold:'#C9A86E'}}}};</script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/restaurant-theme.css" asp-append-version="true" />
+</head>
+<body class="app-body text-slate-800">
+    <header class="app-header">
+        <div class="app-header-inner">
+            <a asp-page="/Dashboard/Index" class="brand">Mataam<span>Pro</span></a>
+            <nav class="desktop-nav" aria-label="Main">
+                <a asp-page="/Dashboard/Index" class="@NavClass("/Dashboard")">@T["Dashboard"]</a>
+                <a asp-page="/Orders/Create" class="@NavClass("/Orders/Create")">@T["NewOrder"]</a>
+                <a asp-page="/Orders/Index" class="@NavClass("/Orders")">@T["Orders"]</a>
+                <a asp-page="/Menus/Index" class="@NavClass("/Menus")">@T["Menus"]</a>
+                <a asp-page="/Stocks/Index" class="@NavClass("/Stocks")">@T["Stocks"]</a>
+                <a asp-page="/Reports/Index" class="@NavClass("/Reports")">@T["Reports"]</a>
+                <a asp-page="/Admin/Index" class="@NavClass("/Admin")">@T["Admin"]</a>
+            </nav>
+            <div class="header-actions">
+                <a class="lang-btn" href="/Culture/Set?culture=@culture&returnUrl=@Uri.EscapeDataString(returnUrl)">@languageLabel</a>
+                <button type="button" id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+            </div>
+        </div>
+        <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile">
+            <a asp-page="/Dashboard/Index">@T["Dashboard"]</a>
+            <a asp-page="/Orders/Create">@T["NewOrder"]</a>
+            <a asp-page="/Orders/Index">@T["Orders"]</a>
+            <a asp-page="/Menus/Index">@T["Menus"]</a>
+            <a asp-page="/Stocks/Index">@T["Stocks"]</a>
+            <a asp-page="/Reports/Index">@T["Reports"]</a>
+            <a asp-page="/Admin/Index">@T["Admin"]</a>
+        </nav>
+    </header>
+    <main class="app-main">
+        @RenderBody()
+    </main>
+    <footer class="app-footer">
+        &copy; @DateTime.Now.Year MataamPro · Kingdom of Saudi Arabia · VAT 15%
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        menuToggle?.addEventListener('click', () => {
+            const open = mobileNav.classList.toggle('hidden') === false;
+            menuToggle.setAttribute('aria-expanded', String(open));
+        });
+    </script>
+</body>
+</html>

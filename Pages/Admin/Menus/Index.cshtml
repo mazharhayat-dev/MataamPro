@@ -1,0 +1,65 @@
+@page
+@model MataamPro.Pages.Admin.Menus.IndexModel
+@using MataamPro.Services
+@inject IWebHostEnvironment Environment
+@{
+    ViewData["Title"] = "Admin - Menus";
+}
+
+<div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <div>
+        <a asp-page="/Admin/Index" class="text-sm font-semibold text-saudi">← Administration</a>
+        <h1 class="mt-3 text-3xl font-extrabold">Menu management</h1>
+        <p class="mt-2 text-slate-500">Create, update, and publish cafeteria items.</p>
+    </div>
+    <a asp-page="Create" class="rounded-full bg-black px-5 py-2.5 text-sm font-bold text-white hover:bg-gray-800">+ Create item</a>
+</div>
+
+<section class="card overflow-hidden">
+    <div class="overflow-x-auto">
+        <table class="w-full min-w-[760px] text-start text-sm">
+            <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                <tr>
+                    <th class="px-5 py-4">Image</th>
+                    <th class="px-5 py-4">Name</th>
+                    <th class="px-5 py-4">Category</th>
+                    <th class="px-5 py-4">Price</th>
+                    <th class="px-5 py-4">Available</th>
+                    <th class="px-5 py-4 text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+            @foreach (var menu in Model.Menus)
+            {
+                <tr class="hover:bg-slate-50">
+                    <td class="px-5 py-3">
+                        <img src="@MenuImageHelper.GetUrl(menu.ImageUrl, Environment)" asp-append-version="true" alt="@menu.NameEn" class="h-16 w-20 rounded-lg object-cover" />
+                    </td>
+                    <td class="px-5 py-3">
+                        <p class="font-bold">@menu.NameEn</p>
+                        <p class="text-xs text-slate-500">@menu.NameAr</p>
+                    </td>
+                    <td class="px-5 py-3">@menu.Category?.NameEn</td>
+                    <td class="px-5 py-3 font-semibold">@menu.Price.ToString("N2") SAR</td>
+                    <td class="px-5 py-3">
+                        @if (menu.IsAvailable)
+                        {
+                            <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">Available</span>
+                        }
+                        else
+                        {
+                            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">Unavailable</span>
+                        }
+                    </td>
+                    <td class="px-5 py-3">
+                        <div class="flex justify-end gap-2">
+                            <a class="rounded-full bg-black px-3 py-2 text-xs font-semibold text-white" asp-page="Edit" asp-route-id="@menu.Id">Edit</a>
+                            <a class="rounded-full border border-red-100 px-3 py-2 text-xs font-semibold text-red-600" asp-page="Delete" asp-route-id="@menu.Id">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,139 @@
+:root {
+    --saudi: #006c35;
+    --gold: #c9a86e;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e6ece8;
+    --bg: #f4f7f5;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+.app-body {
+    background:
+        radial-gradient(circle at top left, rgba(0, 108, 53, 0.08), transparent 28%),
+        var(--bg);
+    font-family: Tajawal, Inter, Arial, sans-serif;
+    color: var(--ink);
+}
+
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--saudi);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(0, 49, 25, 0.18);
+}
+
+.app-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    min-height: 4.5rem;
+    padding: 0 1.25rem;
+}
+
+.brand {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+.brand span {
+    color: var(--gold);
+}
+
+.desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+.nav-link {
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lang-btn,
+.menu-toggle {
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.mobile-nav {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.5rem 1.25rem 1rem;
+}
+
+.mobile-nav a {
+    border-radius: 0.75rem;
+    padding: 0.7rem 0.85rem;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.app-main {
+    max-width: 80rem;
+    margin: 0 auto;
+    min-height: calc(100vh - 8rem);
+    padding: 2rem 1.25rem 3rem;
+}
+
+.app-footer {
+    border-top: 1px solid var(--line);
+    background: #fff;
+    padding: 1.25rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 49, 25, 0.04);
+}
+
+.field-input,
+select, textarea, input[type="text"], input[type="number"], input[type="date"], input[type="search"] {
+    outline: none;
+}
+
+@media (min-width: 900px) {
+    .desktop-nav {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: none !important;
+    }
+}

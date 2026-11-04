@@ -1,0 +1,32 @@
+@page
+@model MataamPro.Pages.Stocks.CreateModel
+@{
+    ViewData["Title"] = "Create Stock";
+}
+
+<div class="mx-auto max-w-xl">
+    <div class="mb-8">
+        <a asp-page="Index" class="text-sm font-semibold text-saudi">← Inventory</a>
+        <h1 class="mt-3 text-3xl font-extrabold">Add stock item</h1>
+    </div>
+    <form method="post" class="card space-y-5 p-6">
+        <label class="block">
+            <span class="text-sm font-semibold">Name</span>
+            <input asp-for="Stock.Name" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3" />
+            <span asp-validation-for="Stock.Name" class="text-sm text-red-600"></span>
+        </label>
+        <label class="block">
+            <span class="text-sm font-semibold">Quantity</span>
+            <input asp-for="Stock.Quantity" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3" />
+            <span asp-validation-for="Stock.Quantity" class="text-sm text-red-600"></span>
+        </label>
+        <div class="flex justify-end gap-3">
+            <a asp-page="Index" class="rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold">Cancel</a>
+            <button type="submit" class="rounded-xl bg-black px-5 py-3 text-sm font-bold text-white">Create</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

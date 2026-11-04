@@ -1,0 +1,28 @@
+@page
+@model MataamPro.Pages.Admin.Menus.CreateModel
+@{
+    ViewData["Title"] = "Create Menu";
+}
+
+<div class="mx-auto max-w-3xl">
+    <div class="mb-8">
+        <a asp-page="Index" class="text-sm font-semibold text-saudi">← Menu list</a>
+        <h1 class="mt-3 text-3xl font-extrabold">Create menu item</h1>
+    </div>
+    <form method="post" enctype="multipart/form-data" class="card space-y-6 p-6 sm:p-8">
+        <div asp-validation-summary="ModelOnly" class="rounded-2xl bg-red-50 px-5 py-4 text-sm text-red-700"></div>
+        <div class="grid gap-5 sm:grid-cols-2">
+            <label class="block"><span class="text-sm font-semibold">Name (English)</span><input asp-for="Input.NameEn" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3" /></label>
+            <label class="block"><span class="text-sm font-semibold">Name (Arabic)</span><input asp-for="Input.NameAr" dir="rtl" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3" /></label>
+            <label class="block"><span class="text-sm font-semibold">Category</span><select asp-for="Input.CategoryId" asp-items="Model.CategoryList" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3"></select></label>
+            <label class="block"><span class="text-sm font-semibold">Price (SAR)</span><input asp-for="Input.Price" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3" /></label>
+        </div>
+        <label class="block"><span class="text-sm font-semibold">Description</span><textarea asp-for="Input.Description" rows="3" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3"></textarea></label>
+        <label class="block"><span class="text-sm font-semibold">Image</span><input asp-for="ImageFile" type="file" accept="image/*" class="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm" /></label>
+        <label class="flex items-center gap-3"><input asp-for="Input.IsAvailable" class="h-4 w-4 accent-saudi" /><span class="text-sm font-semibold">Available</span></label>
+        <div class="flex justify-end gap-3 border-t border-slate-100 pt-5">
+            <a asp-page="Index" class="rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold">Cancel</a>
+            <button type="submit" class="rounded-xl bg-saudi px-5 py-3 text-sm font-bold text-white">Create</button>
+        </div>
+    </form>
+</div>

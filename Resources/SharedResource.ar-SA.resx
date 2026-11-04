@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0</value></resheader>
+  <data name="Dashboard"><value>لوحة التحكم</value></data><data name="Menus"><value>القائمة</value></data><data name="Orders"><value>الطلبات</value></data><data name="Reports"><value>التقارير</value></data><data name="Admin"><value>الإدارة</value></data>
+  <data name="TodaySales"><value>مبيعات اليوم</value></data><data name="TotalOrders"><value>إجمالي الطلبات</value></data><data name="Revenue"><value>الإيرادات</value></data><data name="Vat"><value>ضريبة القيمة المضافة (15٪)</value></data>
+  <data name="QuickActions"><value>إجراءات سريعة</value></data><data name="NewOrder"><value>طلب جديد</value></data><data name="AddMenuItem"><value>إضافة صنف</value></data><data name="RecentOrders"><value>أحدث الطلبات</value></data><data name="ViewAll"><value>عرض الكل</value></data>
+  <data name="Item"><value>الصنف</value></data><data name="Price"><value>السعر</value></data><data name="Status"><value>الحالة</value></data><data name="Customer"><value>العميل</value></data><data name="Table"><value>الطاولة</value></data><data name="Date"><value>التاريخ</value></data><data name="Actions"><value>الإجراءات</value></data>
+  <data name="CreateOrder"><value>إنشاء طلب</value></data><data name="CustomerName"><value>اسم العميل</value></data><data name="TableNumber"><value>رقم الطاولة</value></data><data name="SelectItem"><value>اختر الصنف</value></data><data name="Quantity"><value>الكمية</value></data><data name="SaveOrder"><value>حفظ الطلب</value></data><data name="Cancel"><value>إلغاء</value></data>
+  <data name="Cooking"><value>قيد التحضير</value></data><data name="Pending"><value>قيد الانتظار</value></data><data name="Delivered"><value>تم التسليم</value></data><data name="ManageMenu"><value>إدارة القائمة</value></data><data name="NameEnglish"><value>الاسم (بالإنجليزية)</value></data><data name="NameArabic"><value>الاسم (بالعربية)</value></data><data name="Description"><value>الوصف</value></data><data name="Available"><value>متوفر</value></data><data name="SaveChanges"><value>حفظ التغييرات</value></data><data name="Edit"><value>تعديل</value></data><data name="Delete"><value>حذف</value></data>
+  <data name="DailySales"><value>تقرير المبيعات اليومي</value></data><data name="HijriDate"><value>التاريخ الهجري</value></data><data name="Users"><value>المستخدمون</value></data><data name="Settings"><value>الإعدادات</value></data><data name="SignOut"><value>تسجيل الخروج</value></data><data name="SaudiRiyal"><value>ريال</value></data><data name="NoOrders"><value>لا توجد طلبات بعد</value></data>
+  <data name="Stocks"><value>المخزون</value></data>
+  <data name="Categories"><value>التصنيفات</value></data>
+</root>

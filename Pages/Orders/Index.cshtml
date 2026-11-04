@@ -1,0 +1,61 @@
+@page
+@model MataamPro.Pages.Orders.IndexModel
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<MataamPro.SharedResource> T
+@{
+    ViewData["Title"] = T["Orders"];
+}
+
+<div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <div>
+        <p class="text-sm font-semibold uppercase tracking-wider text-saudi">MataamPro · KSA</p>
+        <h1 class="mt-2 text-3xl font-extrabold">@T["Orders"]</h1>
+        <p class="mt-2 text-slate-500">Track dine-in, takeaway, delivery, and staff meals.</p>
+    </div>
+    <a asp-page="/Orders/Create" class="rounded-xl bg-saudi px-5 py-3 text-sm font-bold text-white">+ @T["NewOrder"]</a>
+</div>
+
+<div class="card overflow-hidden">
+    <div class="overflow-x-auto">
+        <table class="w-full min-w-[880px] text-start text-sm">
+            <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+                <tr>
+                    <th class="px-5 py-4">#</th>
+                    <th class="px-5 py-4">Type</th>
+                    <th class="px-5 py-4">Payment</th>
+                    <th class="px-5 py-4">@T["Price"]</th>
+                    <th class="px-5 py-4">@T["Status"]</th>
+                    <th class="px-5 py-4 text-end">@T["Actions"]</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+                @foreach (var order in Model.Orders)
+                {
+                    var badge = order.Status switch
+                    {
+                        "Closed" or "Delivered" => "bg-emerald-50 text-emerald-700",
+                        "Cooking" => "bg-sky-50 text-sky-700",
+                        _ => "bg-amber-50 text-amber-700"
+                    };
+                    <tr class="hover:bg-slate-50">
+                        <td class="px-5 py-4 font-bold text-saudi">#@order.Id.ToString("D4")</td>
+                        <td class="px-5 py-4">@order.OrderType</td>
+                        <td class="px-5 py-4">@order.PaymentMethod</td>
+                        <td class="px-5 py-4 font-semibold">@order.TotalAmount.ToString("N2") @T["SaudiRiyal"]</td>
+                        <td class="px-5 py-4"><span class="rounded-full px-3 py-1 text-xs font-bold @badge">@order.Status</span></td>
+                        <td class="px-5 py-4">
+                            <div class="flex justify-end gap-2">
+                                <a asp-page="/Orders/Details" asp-route-id="@order.Id" class="rounded-full border border-slate-200 px-3 py-2 text-xs font-semibold">Details</a>
+                                <a asp-controller="Order" asp-action="Invoice" asp-route-id="@order.Id" target="_blank" class="rounded-full bg-black px-3 py-2 text-xs font-semibold text-white">Invoice</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                @if (!Model.Orders.Any())
+                {
+                    <tr><td colspan="6" class="px-5 py-14 text-center text-slate-400">@T["NoOrders"]</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

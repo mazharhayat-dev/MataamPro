@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0</value></resheader>
+  <data name="Dashboard"><value>Dashboard</value></data>
+  <data name="Menus"><value>Menus</value></data>
+  <data name="Orders"><value>Orders</value></data>
+  <data name="Reports"><value>Reports</value></data>
+  <data name="Admin"><value>Admin</value></data>
+  <data name="TodaySales"><value>Sales today</value></data>
+  <data name="TotalOrders"><value>Total orders</value></data>
+  <data name="Revenue"><value>Revenue</value></data>
+  <data name="Vat"><value>VAT (15%)</value></data>
+  <data name="QuickActions"><value>Quick actions</value></data>
+  <data name="NewOrder"><value>New order</value></data>
+  <data name="AddMenuItem"><value>Add menu item</value></data>
+  <data name="RecentOrders"><value>Recent orders</value></data>
+  <data name="ViewAll"><value>View all</value></data>
+  <data name="Item"><value>Item</value></data>
+  <data name="Price"><value>Price</value></data>
+  <data name="Status"><value>Status</value></data>
+  <data name="Customer"><value>Customer</value></data>
+  <data name="Table"><value>Table</value></data>
+  <data name="Date"><value>Date</value></data>
+  <data name="Actions"><value>Actions</value></data>
+  <data name="CreateOrder"><value>Create order</value></data>
+  <data name="CustomerName"><value>Customer name</value></data>
+  <data name="TableNumber"><value>Table number</value></data>
+  <data name="SelectItem"><value>Select menu item</value></data>
+  <data name="Quantity"><value>Quantity</value></data>
+  <data name="SaveOrder"><value>Save order</value></data>
+  <data name="Cancel"><value>Cancel</value></data>
+  <data name="Cooking"><value>Cooking</value></data>
+  <data name="Pending"><value>Pending</value></data>
+  <data name="Delivered"><value>Delivered</value></data>
+  <data name="ManageMenu"><value>Manage menu</value></data>
+  <data name="NameEnglish"><value>Name (English)</value></data>
+  <data name="NameArabic"><value>Name (Arabic)</value></data>
+  <data name="Description"><value>Description</value></data>
+  <data name="Available"><value>Available</value></data>
+  <data name="SaveChanges"><value>Save changes</value></data>
+  <data name="Edit"><value>Edit</value></data>
+  <data name="Delete"><value>Delete</value></data>
+  <data name="DailySales"><value>Daily sales report</value></data>
+  <data name="HijriDate"><value>Hijri date</value></data>
+  <data name="Users"><value>Users</value></data>
+  <data name="Settings"><value>Settings</value></data>
+  <data name="SignOut"><value>Sign out</value></data>
+  <data name="SaudiRiyal"><value>SAR</value></data>
+  <data name="NoOrders"><value>No orders yet</value></data>
+  <data name="Stocks"><value>Stocks</value></data>
+  <data name="Categories"><value>Categories</value></data>
+</root>

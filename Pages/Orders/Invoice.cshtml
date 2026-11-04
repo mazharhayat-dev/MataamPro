@@ -1,0 +1,101 @@
+@page "/Orders/Invoice/{id:int}"
+@model MataamPro.Pages.Orders.InvoiceModel
+@{
+    Layout = null;
+    var order = Model.Order!;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Invoice #@order.Id.ToString("D4") - MataamPro</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #eee; color: #000; font: 11px/1.35 "Courier New", monospace; }
+        .invoice { width: 72mm; max-width: calc(100% - 16px); margin: 16px auto; padding: 4mm 0; background: #fff; }
+        h1, h2, p { margin: 0; } h1 { font-size: 16px; font-weight: 700; } h2 { margin-top: 2px; font-size: 11px; font-weight: 400; }
+        .center { text-align: center; } .muted { color: #000; }
+        .controls { display: flex; justify-content: center; gap: 8px; margin: 0 auto 12px; }
+        .controls button { border: 1px solid #000; background: #fff; padding: 6px 10px; font: inherit; cursor: pointer; }
+        .meta { margin: 12px 0; font-size: 10px; }
+        .meta div { display: flex; justify-content: space-between; gap: 8px; }
+        .rule { overflow: hidden; white-space: nowrap; margin: 7px 0; }
+        .items-header { display: flex; justify-content: space-between; font-weight: 700; }
+        .item { padding: 5px 0; }
+        .item-name { font-weight: 700; overflow-wrap: anywhere; }
+        .item-line { display: flex; justify-content: space-between; gap: 8px; }
+        .totals { margin-top: 8px; }
+        .totals div { display: flex; justify-content: space-between; padding: 2px 0; }
+        .grand { font-size: 15px; font-weight: 700; padding-top: 5px !important; }
+        .barcode { margin-top: 20px; text-align: center; font-size: 13px; letter-spacing: 1px; }
+        .footer { margin-top: 8px; text-align: center; font-weight: 700; }
+        body.print-a4 { background: #fff; }
+        body.print-a4 { page: a4; }
+        body.print-a4 .invoice { width: 190mm; max-width: calc(100% - 32px); padding: 12mm; font-size: 14px; }
+        body.print-a4 h1 { font-size: 24px; } body.print-a4 h2 { font-size: 16px; }
+        @@media print {
+            @@page { size: 80mm auto; margin: 0; }
+            body { width: 80mm; background: #fff; font-family: monospace; font-size: 11px; }
+            .controls { display: none; }
+            .invoice { width: 72mm; max-width: none; margin: 0 auto; padding: 3mm 0 0; }
+            body.print-a4 { width: auto; font-size: 14px; }
+            body.print-a4 .invoice { width: 190mm; max-width: none; margin: 0 auto; padding: 12mm; }
+            @@page a4 { size: A4; margin: 12mm; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="controls" aria-label="Print settings">
+        <button type="button" onclick="printReceipt('thermal')">80mm Print</button>
+        <button type="button" onclick="printReceipt('a4')">A4 Print</button>
+    </nav>
+    <main class="invoice">
+        <header class="center">
+            <h1>MataamPro - @(order.Branch?.BranchName ?? "Unknown Branch")</h1>
+            <h2>Medina, Saudi Arabia</h2>
+            <p class="muted">VAT No: 300XXXXXXX</p>
+        </header>
+        <section class="meta">
+            <div><span>Bill No:</span><span>#@order.Id.ToString("D4")</span></div>
+            <div><span>Date:</span><span>@order.OrderDate.ToString("dd/MM/yyyy")</span></div>
+            <div><span>Time:</span><span>@order.OrderDate.ToString("HH:mm")</span></div>
+            <div><span>Cashier:</span><span>@(order.Cashier?.CashierName ?? "-")</span></div>
+            <div><span>Payment:</span><span>@order.PaymentMethod</span></div>
+        </section>
+        <div class="rule">--------------------------------</div>
+        <div class="items-header"><span>ITEM</span><span>TOTAL</span></div>
+        <div class="rule">--------------------------------</div>
+        <section class="items">
+            @foreach (var item in Model.Items)
+            {
+                <div class="item">
+                    <div class="item-name">@(item.Menu?.NameEn ?? "Item")</div>
+                    <div class="item-line"><span>@item.Price.ToString("N2") x @item.Quantity</span><span>= @((item.Price * item.Quantity).ToString("N2")) SAR</span></div>
+                </div>
+            }
+        </section>
+        <div class="rule">--------------------------------</div>
+        <section class="totals">
+            <div><span>Subtotal</span><span>@Model.Subtotal.ToString("N2") SAR</span></div>
+            <div><span>VAT 15%</span><span>@Model.Vat.ToString("N2") SAR</span></div>
+            <div class="grand"><span>Grand Total</span><span>@((Model.Subtotal + Model.Vat).ToString("N2")) SAR</span></div>
+        </section>
+        <div class="rule">--------------------------------</div>
+        <div class="barcode">#### #@order.Id.ToString("D4") ####</div>
+        <footer class="footer">Thank you</footer>
+    </main>
+    <script>
+        function printReceipt(format) {
+            document.body.classList.toggle('print-a4', format === 'a4');
+            document.body.style.page = format === 'a4' ? 'a4' : 'auto';
+            window.print();
+        }
+
+        @if (Request.Query["openKot"].ToString() == "1")
+        {
+            <text>window.open('/Orders/KOT/@order.Id', '_blank');</text>
+        }
+    </script>
+</body>
+</html>

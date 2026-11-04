@@ -1,0 +1,58 @@
+@model MataamPro.Models.Order
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kitchen Order - #@Model.Id.ToString("D4")</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { width: 280px; margin: 0 auto; background: #eee; color: #000; font: 14px/1.4 "Courier New", monospace; }
+        .ticket { width: 100%; margin: 16px auto; padding: 5mm 0; background: #fff; }
+        h1, p { margin: 0; }
+        h1 { font-size: 19px; line-height: 1.15; text-align: center; font-weight: 900; }
+        .meta { margin: 12px 0; font-weight: 700; }
+        .meta div, .item { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; }
+        .rule { overflow: hidden; white-space: nowrap; margin: 7px 0; }
+        .items-header { width: 100%; border-collapse: collapse; font-weight: 900; }
+        .items-header th:last-child, .items-header td:last-child { text-align: right; }
+        .item-name { max-width: 58mm; font-weight: 700; overflow-wrap: anywhere; }
+        .quantity { font-size: 15px; font-weight: 900; }
+        .note { margin-top: 14px; text-align: center; font-size: 14px; font-weight: 900; }
+        .printer { margin-top: 8px; text-align: center; color: #555; font-size: 10px; }
+        @@media print {
+            @@page { size: 80mm auto; margin: 0; }
+            body { width: 280px; background: #fff; }
+            .ticket { width: 100%; margin: 0 auto; padding: 4mm 0 0; }
+            .printer { display: none; }
+        }
+    </style>
+</head>
+<body onload="window.print()">
+    <main class="ticket">
+        <h1>KITCHEN ORDER</h1>
+        <section class="meta">
+            <div><span>Order No:</span><span>#@Model.Id.ToString("D4")</span></div>
+            <div><span>Table No:</span><span>@(Model.TableNo ?? "-")</span></div>
+            <div><span>Date/Time:</span><span>@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</span></div>
+        </section>
+        <div class="rule">--------------------------------</div>
+        <table class="items-header">
+            <thead><tr><th align="left">ITEM</th><th align="right">QTY</th></tr></thead>
+        </table>
+        <div class="rule">--------------------------------</div>
+        @foreach (var item in Model.Items)
+        {
+            <div class="item">
+                <span class="item-name">@(item.Menu?.NameEn ?? "Item")</span>
+                <span class="quantity">x @item.Quantity</span>
+            </div>
+        }
+        <div class="rule">--------------------------------</div>
+        <p class="note">FOR KITCHEN</p>
+    </main>
+</body>
+</html>

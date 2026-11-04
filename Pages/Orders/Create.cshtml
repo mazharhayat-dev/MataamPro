@@ -1,0 +1,150 @@
+@page
+@model MataamPro.Pages.Orders.CreateModel
+@using System.Text.Json
+@using Microsoft.Extensions.Localization
+@using MataamPro.Services
+@inject IStringLocalizer<MataamPro.SharedResource> T
+@inject IWebHostEnvironment Environment
+@{
+    ViewData["Title"] = T["NewOrder"];
+}
+
+<form method="post" id="orderForm" class="font-[Tajawal]" target="_blank" onsubmit="prepareSubmit(event)">
+    @Html.AntiForgeryToken()
+    <input asp-for="CartJson" type="hidden" id="cartJson" />
+
+    <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div>
+            <a asp-page="/Orders/Index" class="text-sm font-semibold text-saudi">← @T["Orders"]</a>
+            <h1 class="mt-3 text-3xl font-extrabold">@T["NewOrder"]</h1>
+            <p class="mt-2 text-slate-500">Saudi cafeteria POS · VAT 15%</p>
+        </div>
+    </div>
+
+    <div asp-validation-summary="ModelOnly" class="mb-5 rounded-2xl bg-red-50 px-5 py-4 text-sm text-red-700"></div>
+    <div class="grid gap-6 lg:grid-cols-[1fr_380px]">
+        <main>
+            <section class="card mb-6 rounded-2xl p-5 shadow-sm">
+                <h2 class="mb-4 text-lg font-extrabold">Step 1: Branch</h2>
+                <label class="block"><span class="mb-2 block text-sm font-bold">Select branch</span>
+                    <select asp-for="BranchId" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3" required>
+                        <option value="">Select a branch</option>
+                        @foreach (var branch in Model.Branches)
+                        {
+                            <option value="@branch.Id">@branch.BranchName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="BranchId" class="text-sm text-red-600"></span>
+                </label>
+            </section>
+
+            <section class="card mb-6 rounded-2xl p-5 shadow-sm">
+                <h2 class="mb-4 text-lg font-extrabold">Order details</h2>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <label class="block"><span class="mb-2 block text-sm font-bold">Order type</span>
+                        <select asp-for="OrderType" id="orderType" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3">
+                            <option value="DineIn">Dine in</option><option value="Takeaway">Takeaway</option><option value="Delivery">Delivery</option><option value="HungerStation">HungerStation</option>
+                        </select>
+                        <span asp-validation-for="OrderType" class="text-sm text-red-600"></span>
+                    </label>
+                    <label class="block"><span class="mb-2 block text-sm font-bold">Phone</span><input asp-for="Phone" class="w-full rounded-xl border border-slate-200 px-4 py-3" /></label>
+                    <label class="block" id="tableField"><span class="mb-2 block text-sm font-bold">Table number</span><input asp-for="TableNo" class="w-full rounded-xl border border-slate-200 px-4 py-3" /><span asp-validation-for="TableNo" class="text-sm text-red-600"></span></label>
+                </div>
+                <label class="mt-5 flex items-center gap-3 rounded-xl bg-amber-50 p-4 font-bold text-amber-900"><input asp-for="IsStaffMeal" id="staffMeal" class="h-5 w-5" /> Is Staff Meal?</label>
+                <div id="employeeField" class="mt-4 hidden"><label class="block"><span class="mb-2 block text-sm font-bold">Employee full name</span><input asp-for="EmployeeName" id="employeeName" class="w-full rounded-xl border border-slate-200 px-4 py-3" /><span asp-validation-for="EmployeeName" class="text-sm text-red-600"></span></label><p class="mt-1 text-xs text-slate-500">Staff meals are restricted to approved HR items, quantity one, and close immediately.</p></div>
+            </section>
+
+            <section class="card rounded-2xl p-5 shadow-sm">
+                <h2 class="mb-4 text-lg font-extrabold">Step 2: Menu items</h2>
+                <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                    @foreach (var menu in Model.Menus)
+                    {
+                        <button type="button" class="menu-item rounded-xl border border-slate-100 bg-white p-4 text-start shadow-sm transition hover:border-black" data-id="@menu.Id" data-name="@menu.NameEn" data-price="@menu.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)"><img src="@MenuImageHelper.GetUrl(menu.ImageUrl, Environment)" asp-append-version="true" alt="@menu.NameEn" class="mb-3 h-28 w-full rounded-lg object-cover" /><span class="block font-bold">@menu.NameEn</span><span class="mt-1 block text-xs text-slate-500">@menu.Price.ToString("N2") SAR</span></button>
+                    }
+                </div>
+            </section>
+
+            <section class="card mt-6 rounded-2xl p-5 shadow-sm">
+                <h2 class="mb-4 text-lg font-extrabold">Step 3: Payment</h2>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <label class="block"><span class="mb-2 block text-sm font-bold">Select cashier</span>
+                        <select asp-for="CashierId" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3" required>
+                            <option value="">Select a cashier</option>
+                            @foreach (var cashier in Model.Cashiers)
+                            {
+                                <option value="@cashier.Id">@cashier.CashierName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="CashierId" class="text-sm text-red-600"></span>
+                    </label>
+                    <fieldset>
+                        <legend class="mb-2 block text-sm font-bold">Payment method</legend>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            @foreach (var paymentMethod in MataamPro.Pages.Orders.CreateModel.PaymentMethods)
+                            {
+                                <label class="flex items-center gap-2">
+                                    <input type="radio" asp-for="PaymentMethod" value="@paymentMethod" class="h-4 w-4" />
+                                    <span>@paymentMethod</span>
+                                </label>
+                            }
+                        </div>
+                        <span asp-validation-for="PaymentMethod" class="text-sm text-red-600"></span>
+                    </fieldset>
+                </div>
+            </section>
+        </main>
+
+        <aside class="card flex h-fit flex-col rounded-2xl p-5 shadow-sm lg:sticky lg:top-24">
+            <h2 class="border-b border-slate-100 pb-4 text-lg font-extrabold">Order List</h2>
+            <div id="cartList" class="min-h-[220px] divide-y divide-slate-100"><p id="emptyCart" class="py-16 text-center text-sm text-slate-400">No items selected.</p></div>
+            <div class="space-y-2 border-t border-slate-100 pt-4 text-sm"><div class="flex justify-between"><span>Subtotal</span><span id="subtotal">0.00 SAR</span></div><div class="flex justify-between"><span>VAT 15%</span><span id="vat">0.00 SAR</span></div><div class="flex justify-between text-lg font-extrabold"><span>Total</span><span id="total">0.00 SAR</span></div></div>
+            <button type="submit" class="mt-5 w-full rounded-full bg-black px-6 py-3.5 text-sm font-bold text-white">Save order</button>
+        </aside>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const cart = [];
+        const money = value => new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+        const staffMeals = @Html.Raw(JsonSerializer.Serialize(MataamPro.Pages.Orders.CreateModel.ApprovedStaffMeals));
+        const staffToggle = document.getElementById('staffMeal');
+        const employeeField = document.getElementById('employeeField');
+        const tableField = document.getElementById('tableField');
+
+        function syncMode() {
+            const staff = staffToggle.checked;
+            employeeField.classList.toggle('hidden', !staff);
+            document.getElementById('employeeName').required = staff;
+            tableField.classList.toggle('hidden', document.getElementById('orderType').value !== 'DineIn');
+            if (staff) {
+                cart.splice(0, cart.length, ...cart.filter(item => staffMeals.includes(item.name)).slice(0, 1));
+                if (cart[0]) cart[0].qty = 1;
+                renderCart();
+            }
+        }
+        staffToggle.addEventListener('change', syncMode);
+        document.getElementById('orderType').addEventListener('change', syncMode);
+        document.querySelectorAll('.menu-item').forEach(button => button.addEventListener('click', () => {
+            if (staffToggle.checked && !staffMeals.includes(button.dataset.name)) return;
+            const existing = cart.find(item => item.id === Number(button.dataset.id));
+            if (staffToggle.checked) {
+                cart.length = 0;
+                cart.push({ id: Number(button.dataset.id), name: button.dataset.name, price: Number(button.dataset.price), qty: 1 });
+            } else if (existing) existing.qty++;
+            else cart.push({ id: Number(button.dataset.id), name: button.dataset.name, price: Number(button.dataset.price), qty: 1 });
+            renderCart();
+        }));
+        function renderCart() {
+            const list = document.getElementById('cartList');
+            if (!cart.length) { list.innerHTML = '<p id="emptyCart" class="py-16 text-center text-sm text-slate-400">No items selected.</p>'; }
+            else { list.innerHTML = cart.map((item, index) => `<div class="flex items-center justify-between gap-2 py-4"><span class="min-w-0 flex-1 truncate font-bold">${item.name}</span><button type="button" data-index="${index}" data-delta="-1" class="h-7 w-7 rounded-full border">−</button><span>${item.qty}</span><button type="button" data-index="${index}" data-delta="1" class="h-7 w-7 rounded-full bg-black text-white">+</button></div>`).join(''); }
+            list.querySelectorAll('[data-index]').forEach(button => button.addEventListener('click', () => { const i = Number(button.dataset.index); cart[i].qty += Number(button.dataset.delta); if (cart[i].qty < 1) cart.splice(i, 1); renderCart(); }));
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0), vat = subtotal * .15;
+            document.getElementById('subtotal').textContent = `${money(subtotal)} SAR`; document.getElementById('vat').textContent = `${money(vat)} SAR`; document.getElementById('total').textContent = `${money(subtotal + vat)} SAR`;
+        }
+        function prepareSubmit(event) { if (!cart.length) { event.preventDefault(); alert('Select at least one menu item.'); return; } document.getElementById('cartJson').value = JSON.stringify(cart.map(item => ({ id: item.id, quantity: item.qty }))); }
+        syncMode();
+    </script>
+}

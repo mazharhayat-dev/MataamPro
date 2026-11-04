@@ -1,0 +1,45 @@
+@page "/Categories"
+@model MataamPro.Pages.Categories.IndexModel
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<MataamPro.SharedResource> T
+@{
+    ViewData["Title"] = T["Categories"];
+}
+
+<div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <div>
+        <a href="/" class="text-sm font-semibold text-saudi">← @T["Dashboard"]</a>
+        <h1 class="mt-3 text-3xl font-extrabold">Categories</h1>
+        <p class="mt-2 text-slate-500">Browse all menu categories.</p>
+    </div>
+</div>
+
+<div class="card overflow-hidden">
+    <div class="overflow-x-auto">
+        <table class="w-full text-start text-sm">
+            <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+                <tr>
+                    <th class="px-5 py-4">#</th>
+                    <th class="px-5 py-4">Name</th>
+                    <th class="px-5 py-4">Arabic name</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+                @foreach (var category in Model.Categories)
+                {
+                    <tr>
+                        <td class="px-5 py-4 font-bold text-saudi">#@category.Id</td>
+                        <td class="px-5 py-4 font-semibold">@category.NameEn</td>
+                        <td class="px-5 py-4">@category.NameAr</td>
+                    </tr>
+                }
+                @if (Model.Categories.Count == 0)
+                {
+                    <tr>
+                        <td colspan="3" class="px-5 py-14 text-center text-slate-400">No categories found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

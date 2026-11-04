@@ -1,0 +1,83 @@
+@page
+@model MataamPro.Pages.Settings.IndexModel
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<div class="mb-8">
+    <a asp-page="/Admin/Index" class="text-sm font-semibold text-saudi">← Administration</a>
+    <h1 class="mt-3 text-3xl font-extrabold">Restaurant settings</h1>
+    <p class="mt-2 text-slate-500">Configure tax, receipts, branch details, and printing.</p>
+</div>
+
+@if (Model.Saved)
+{
+    <div class="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-800" role="status">
+        Settings saved successfully.
+    </div>
+}
+
+<form method="post" class="space-y-6">
+    <div asp-validation-summary="ModelOnly" class="rounded-2xl bg-red-50 px-5 py-4 text-sm text-red-700"></div>
+
+    <section class="card rounded-2xl p-6 sm:p-8">
+        <div class="mb-6">
+            <h2 class="font-bold">Branch and tax</h2>
+            <p class="mt-1 text-sm text-slate-500">Set the branch identity and VAT applied to orders.</p>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+            <label class="block">
+                <span class="text-sm font-semibold">Branch name</span>
+                <input asp-for="Settings.BranchName" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-black" />
+                <span asp-validation-for="Settings.BranchName" class="mt-1 block text-xs text-red-600"></span>
+            </label>
+            <label class="block">
+                <span class="text-sm font-semibold">VAT rate (%)</span>
+                <input asp-for="Settings.VatRate" type="number" min="0" max="100" step="0.01" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-black" />
+                <span asp-validation-for="Settings.VatRate" class="mt-1 block text-xs text-red-600"></span>
+            </label>
+        </div>
+    </section>
+
+    <section class="card rounded-2xl p-6 sm:p-8">
+        <div class="mb-6">
+            <h2 class="font-bold">Receipt preferences</h2>
+            <p class="mt-1 text-sm text-slate-500">Customize the text printed on customer receipts.</p>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+            <label class="block">
+                <span class="text-sm font-semibold">Receipt header</span>
+                <textarea asp-for="Settings.ReceiptHeader" rows="3" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-black"></textarea>
+                <span asp-validation-for="Settings.ReceiptHeader" class="mt-1 block text-xs text-red-600"></span>
+            </label>
+            <label class="block">
+                <span class="text-sm font-semibold">Receipt footer</span>
+                <textarea asp-for="Settings.ReceiptFooter" rows="3" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-black"></textarea>
+                <span asp-validation-for="Settings.ReceiptFooter" class="mt-1 block text-xs text-red-600"></span>
+            </label>
+        </div>
+    </section>
+
+    <section class="card rounded-2xl p-6 sm:p-8">
+        <div class="mb-6">
+            <h2 class="font-bold">Printer settings</h2>
+            <p class="mt-1 text-sm text-slate-500">Choose the printer used for order receipts.</p>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 sm:items-end">
+            <label class="block">
+                <span class="text-sm font-semibold">Printer name</span>
+                <input asp-for="Settings.PrinterName" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-black" />
+                <span asp-validation-for="Settings.PrinterName" class="mt-1 block text-xs text-red-600"></span>
+            </label>
+            <label class="flex items-center gap-3 pb-3">
+                <input asp-for="Settings.AutoPrintReceipts" class="h-4 w-4 accent-black" />
+                <span class="text-sm font-semibold">Print receipts automatically</span>
+            </label>
+        </div>
+    </section>
+
+    <div class="flex flex-wrap justify-end gap-3">
+        <a asp-page="/Admin/Index" class="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-black hover:text-black">Cancel</a>
+        <button type="submit" class="rounded-full bg-black px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-gray-800">Save settings</button>
+    </div>
+</form>

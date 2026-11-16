@@ -11,18 +11,22 @@ permissions:
   id-token: write
 
 env:
-  DOTNET_VERSION: '8.0.x'
+  DOTNET_VERSION: '10.0.x'
   PROJECT_PATH: 'MataamPro.csproj'
   PUBLISH_PATH: './publish'
-  AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_MataamPro }}
+  AZURE_RESOURCE_GROUP: 'MataamProRG'
+  AZURE_WEBAPP_NAME: 'mazharhayatdev'
   AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
   AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
   AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  AZURE_SQL_CONNECTION_STRING: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: production
+    environment:
+      name: production
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Checkout source
@@ -45,10 +49,10 @@ jobs:
       - name: Validate Azure deployment secrets
         shell: bash
         run: |
-          test -n "$AZURE_WEBAPP_NAME" || { echo "::error::Missing AZURE_WEBAPP_MataamPro secret"; exit 1; }
           test -n "$AZURE_CLIENT_ID" || { echo "::error::Missing AZURE_CLIENT_ID secret"; exit 1; }
           test -n "$AZURE_TENANT_ID" || { echo "::error::Missing AZURE_TENANT_ID secret"; exit 1; }
           test -n "$AZURE_SUBSCRIPTION_ID" || { echo "::error::Missing AZURE_SUBSCRIPTION_ID secret"; exit 1; }
+          test -n "$AZURE_SQL_CONNECTION_STRING" || { echo "::error::Missing AZURE_SQL_CONNECTION_STRING secret"; exit 1; }
 
       - name: Sign in to Azure
         uses: azure/login@v2
@@ -57,7 +61,17 @@ jobs:
           tenant-id: ${{ env.AZURE_TENANT_ID }}
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Configure Azure SQL connection string
+        shell: bash
+        run: |
+          az webapp config connection-string set \
+            --resource-group "$AZURE_RESOURCE_GROUP" \
+            --name "$AZURE_WEBAPP_NAME" \
+            --connection-string-type SQLAzure \
+            --settings DefaultConnection="$AZURE_SQL_CONNECTION_STRING"
+
       - name: Deploy to Azure App Service
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}

@@ -1,0 +1,86 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "MataamPro" [ref=e4] [cursor=pointer]:
+        - /url: /Dashboard
+      - navigation "Main" [ref=e5]:
+        - link "Dashboard" [ref=e6] [cursor=pointer]:
+          - /url: /Dashboard
+        - link "New order" [ref=e7] [cursor=pointer]:
+          - /url: /Orders/Create
+        - link "Orders" [ref=e8] [cursor=pointer]:
+          - /url: /Orders
+        - link "Menus" [ref=e9] [cursor=pointer]:
+          - /url: /Menus
+        - link "Stocks" [ref=e10] [cursor=pointer]:
+          - /url: /Stocks
+        - link "Reports" [ref=e11] [cursor=pointer]:
+          - /url: /Reports
+        - link "Admin" [ref=e12] [cursor=pointer]:
+          - /url: /Admin
+      - link "العربية" [ref=e14] [cursor=pointer]:
+        - /url: /Culture/Set?culture=ar-SA&returnUrl=%2FDashboard%2FIndex
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - paragraph [ref=e18]: MataamPro · KSA
+        - heading "Dashboard" [level=1] [ref=e19]
+        - paragraph [ref=e20]: Sunday, 08 November 2026
+      - link "+ New order" [ref=e21] [cursor=pointer]:
+        - /url: /Orders/Create
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - paragraph [ref=e24]: Sales today
+        - paragraph [ref=e25]: 0.00 SAR
+        - paragraph [ref=e26]: Net before VAT
+      - generic [ref=e27]:
+        - paragraph [ref=e28]: Total orders
+        - paragraph [ref=e29]: "0"
+        - paragraph [ref=e30]: Today
+      - generic [ref=e31]:
+        - paragraph [ref=e32]: Revenue
+        - paragraph [ref=e33]: 0.00 SAR
+        - paragraph [ref=e34]: Including VAT 15%
+      - generic [ref=e35]:
+        - paragraph [ref=e36]: VAT (15%)
+        - paragraph [ref=e37]: 0.00 SAR
+        - paragraph [ref=e38]: Tax collected today
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - heading "Recent orders" [level=2] [ref=e42]
+          - link "View all →" [ref=e43] [cursor=pointer]:
+            - /url: /Orders
+        - table [ref=e45]:
+          - rowgroup [ref=e46]:
+            - row "# Customer Table Price Status" [ref=e47]:
+              - columnheader "#" [ref=e48]
+              - columnheader "Customer" [ref=e49]
+              - columnheader "Table" [ref=e50]
+              - columnheader "Price" [ref=e51]
+              - columnheader "Status" [ref=e52]
+          - rowgroup [ref=e53]:
+            - row "No orders yet" [ref=e54]:
+              - cell "No orders yet" [ref=e55]
+      - complementary [ref=e56]:
+        - generic [ref=e57]:
+          - heading "Quick actions" [level=2] [ref=e58]
+          - generic [ref=e59]:
+            - link "New order →" [ref=e60] [cursor=pointer]:
+              - /url: /Orders/Create
+              - text: New order
+              - generic [ref=e61]: →
+            - link "Add menu item →" [ref=e62] [cursor=pointer]:
+              - /url: /Menus/Create
+              - text: Add menu item
+              - generic [ref=e63]: →
+            - link "Daily sales report →" [ref=e64] [cursor=pointer]:
+              - /url: /Reports
+              - text: Daily sales report
+              - generic [ref=e65]: →
+        - generic [ref=e66]:
+          - paragraph [ref=e67]: Available menu items
+          - paragraph [ref=e68]: "0"
+          - paragraph [ref=e69]: Low stock alerts
+          - paragraph [ref=e70]: "0"
+  - contentinfo [ref=e71]: © 2026 MataamPro · Kingdom of Saudi Arabia · VAT 15%

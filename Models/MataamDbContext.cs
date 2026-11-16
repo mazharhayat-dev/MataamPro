@@ -15,6 +15,7 @@ namespace MataamPro.Models
                 entity.Property(menu => menu.NameEn).IsUnicode();
                 entity.Property(menu => menu.NameAr).IsUnicode();
                 entity.Property(menu => menu.Description).IsUnicode();
+                entity.Property(menu => menu.Price).HasPrecision(18, 2);
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -33,6 +34,7 @@ namespace MataamPro.Models
                 entity.Property(order => order.TableNo).IsUnicode();
                 entity.Property(order => order.Status).IsUnicode();
                 entity.Property(order => order.PaymentMethod).IsRequired().IsUnicode();
+                entity.Property(order => order.TotalAmount).HasPrecision(18, 2);
                 entity.HasOne(order => order.Branch)
                     .WithMany(branch => branch.Orders)
                     .HasForeignKey(order => order.BranchId)
@@ -54,6 +56,10 @@ namespace MataamPro.Models
                     .HasForeignKey(stock => stock.MenuId)
                     .OnDelete(DeleteBehavior.SetNull);
             });
+
+            modelBuilder.Entity<OrderItem>()
+                .Property(orderItem => orderItem.Price)
+                .HasPrecision(18, 2);
         }
 
         public DbSet<Menu> Menus { get; set; }

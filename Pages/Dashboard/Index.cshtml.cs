@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MataamPro.Pages.Dashboard;
 
-public class IndexModel(MataamDbContext db) : PageModel
+public class IndexModel(MataamDbContext? db, ILogger<IndexModel> _logger) : PageModel
 {
     public decimal SalesToday { get; private set; }
     public decimal RevenueToday { get; private set; }
@@ -16,18 +16,31 @@ public class IndexModel(MataamDbContext db) : PageModel
 
     public async Task OnGetAsync()
     {
-        var start = DateTime.Today;
-        var orders = await db.Orders
-            .Include(order => order.Items)
-            .Where(order => order.OrderDate >= start)
-            .OrderByDescending(order => order.OrderDate)
-            .ToListAsync();
+        try
+        {
+            if (db is null)
+            {
+                throw new InvalidOperationException("MataamPro database context was not provided.");
+            }
 
-        OrdersToday = orders.Count;
-        RevenueToday = orders.Sum(order => order.TotalAmount);
-        SalesToday = orders.Sum(order => order.Items.Sum(item => item.Price * item.Quantity));
-        RecentOrders = orders.Take(6).ToList();
-        MenusCount = await db.Menus.CountAsync(menu => menu.IsAvailable);
-        LowStockCount = await db.Stocks.CountAsync(stock => stock.Quantity < 20);
+            var start = DateTime.Today;
+            var orders = await db.Orders
+                .Include(order => order.Items)
+                .Where(order => order.OrderDate >= start)
+                .OrderByDescending(order => order.OrderDate)
+                .ToListAsync();
+
+            OrdersToday = orders.Count;
+            RevenueToday = orders.Sum(order => order.TotalAmount);
+            SalesToday = orders.Sum(order => order.Items.Sum(item => item.Price * item.Quantity));
+            RecentOrders = orders.Take(6).ToList();
+            MenusCount = await db.Menus.CountAsync(menu => menu.IsAvailable);
+            LowStockCount = await db.Stocks.CountAsync(stock => stock.Quantity < 20);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Dashboard load failed. TraceIdentifier: {TraceIdentifier}", HttpContext.TraceIdentifier);
+            RecentOrders = [];
+        }
     }
 }

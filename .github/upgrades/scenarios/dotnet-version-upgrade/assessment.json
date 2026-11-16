@@ -1,0 +1,344 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-11-16T01:00:08.1959221Z",
+  "analysisEndTime": "2026-11-16T01:00:12.653137Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 1,
+      "issues": 4,
+      "incidents": 9,
+      "effort": 9
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 1,
+        "Optional": 1,
+        "Potential": 7,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 5,
+        "Project": 1,
+        "Api": 3
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "MataamPro.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 9,
+      "properties": {
+        "appName": "MataamPro",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net8.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "isTestProject": false,
+        "numberOfFiles": 131,
+        "numberOfCodeFiles": 79,
+        "linesTotal": 68062,
+        "linesOfCode": 3185,
+        "totalApiScanned": 15842,
+        "minLinesOfCodeToChange": 3,
+        "maxLinesOfCodeToChange": 3
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "64e6716d-c6d1-4a5e-94a3-9b2b955517cb",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MataamPro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.15",
+              "protected": "Microsoft.EntityFrameworkCore, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.15"
+            },
+            "kind": "File",
+            "path": "MataamPro.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.15",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.15",
+            "label": "Microsoft.EntityFrameworkCore 8.0.11",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "8.0.11",
+              "PackageNewVersion": "10.0.15",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "a76a6bb9-2c79-4546-8742-c982f5c7f45c",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MataamPro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.InMemory, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.InMemory, and replace with new package Microsoft.EntityFrameworkCore.InMemory 10.0.15",
+              "protected": "Microsoft.EntityFrameworkCore.InMemory, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.InMemory, and replace with new package Microsoft.EntityFrameworkCore.InMemory 10.0.15"
+            },
+            "kind": "File",
+            "path": "MataamPro.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.InMemory, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.InMemory, and replace with new package Microsoft.EntityFrameworkCore.InMemory 10.0.15",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.InMemory, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.InMemory, and replace with new package Microsoft.EntityFrameworkCore.InMemory 10.0.15",
+            "label": "Microsoft.EntityFrameworkCore.InMemory 8.0.11",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.InMemory",
+              "PackageVersion": "8.0.11",
+              "PackageNewVersion": "10.0.15",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "8436ba53-69c0-4636-b7ad-412cf13c1521",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MataamPro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.15",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.15"
+            },
+            "kind": "File",
+            "path": "MataamPro.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.15",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 8.0.11\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.15",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 8.0.11",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "8.0.11",
+              "PackageNewVersion": "10.0.15",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "f058e560-d4a6-49cf-bccb-974b91c09150",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MataamPro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "System.Security.Cryptography.Pkcs, 8.0.0\n\nRecommendation:\n\nRemove System.Security.Cryptography.Pkcs, and replace with new package System.Security.Cryptography.Pkcs 10.0.15",
+              "protected": "System.Security.Cryptography.Pkcs, 8.0.0\n\nRecommendation:\n\nRemove System.Security.Cryptography.Pkcs, and replace with new package System.Security.Cryptography.Pkcs 10.0.15"
+            },
+            "kind": "File",
+            "path": "MataamPro.csproj",
+            "snippet": "System.Security.Cryptography.Pkcs, 8.0.0\n\nRecommendation:\n\nRemove System.Security.Cryptography.Pkcs, and replace with new package System.Security.Cryptography.Pkcs 10.0.15",
+            "protectedSnippet": "System.Security.Cryptography.Pkcs, 8.0.0\n\nRecommendation:\n\nRemove System.Security.Cryptography.Pkcs, and replace with new package System.Security.Cryptography.Pkcs 10.0.15",
+            "label": "System.Security.Cryptography.Pkcs 8.0.0",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.Pkcs",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.15",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "d36b2acb-7e74-4dbe-997d-6631618c0363",
+          "ruleId": "NuGet.0004",
+          "projectPath": "MataamPro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "System.Security.Cryptography.Pkcs, 8.0.0\n\nRecommendation:\n\nSystem.Security.Cryptography.Pkcs, 11.0.0",
+              "protected": "System.Security.Cryptography.Pkcs, 8.0.0\n\nRecommendation:\n\nSystem.Security.Cryptography.Pkcs, 11.0.0"
+            },
+            "kind": "File",
+            "path": "MataamPro.csproj",
+            "snippet": "System.Security.Cryptography.Pkcs, 8.0.0\n\nRecommendation:\n\nSystem.Security.Cryptography.Pkcs, 11.0.0",
+            "protectedSnippet": "System.Security.Cryptography.Pkcs, 8.0.0\n\nRecommendation:\n\nSystem.Security.Cryptography.Pkcs, 11.0.0",
+            "label": "System.Security.Cryptography.Pkcs 8.0.0",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.Pkcs",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "11.0.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "9e67366a-6ea1-4fb2-8a45-12823a76c501",
+          "ruleId": "Project.0002",
+          "projectPath": "MataamPro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net8.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "MataamPro.csproj",
+            "snippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "d8afe608-89fa-4e73-9c33-53b6457a0bbf",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "MataamPro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "WriteAttributeValue(\u0022\u0022, 2901, \r\n#nullable restore\r\n#line (47,84)-(47,115) \u0022D:\\FullStackDevelopmentCourseTraining\\MataamPro\\Pages\\Shared\\_Layout.cshtml\u0022\r\nUri.EscapeDataString(returnUrl)\r\n\r\n#line default\r\n#line hidden\r\n#nullable disable\r\n                , 2901, 32, false);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "obj\\Release\\net8.0\\Microsoft.CodeAnalysis.Razor.Compiler\\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\\Pages/Shared/_Layout_cshtml.g.cs",
+            "snippet": "WriteAttributeValue(\u0022\u0022, 2901, \r\n#nullable restore\r\n#line (47,84)-(47,115) \u0022D:\\FullStackDevelopmentCourseTraining\\MataamPro\\Pages\\Shared\\_Layout.cshtml\u0022\r\nUri.EscapeDataString(returnUrl)\r\n\r\n#line default\r\n#line hidden\r\n#nullable disable\r\n                , 2901, 32, false);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "properties": {
+              "CharCount": "48287"
+            },
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 460,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "73ab688f-5251-4830-b18c-5a715b8e35f4",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "MataamPro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "if (Uri.TryCreate(imageUrl, UriKind.Absolute, out _))\r\n        {\r\n            return imageUrl;\r\n        }",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "Services\\MenuImageHelper.cs",
+            "snippet": "if (Uri.TryCreate(imageUrl, UriKind.Absolute, out _))\r\n        {\r\n            return imageUrl;\r\n        }",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "properties": {
+              "CharCount": "708"
+            },
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 13,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "1e5cc60a-14bb-49d6-9d2b-5975087adfca",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "MataamPro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "if (Uri.TryCreate(imageUrl, UriKind.Absolute, out _))\r\n        {\r\n            return imageUrl;\r\n        }",
+              "protected": "M:System.Uri.TryCreate(System.String,System.UriKind,System.Uri@)"
+            },
+            "kind": "File",
+            "path": "Services\\MenuImageHelper.cs",
+            "snippet": "if (Uri.TryCreate(imageUrl, UriKind.Absolute, out _))\r\n        {\r\n            return imageUrl;\r\n        }",
+            "protectedSnippet": "M:System.Uri.TryCreate(System.String,System.UriKind,System.Uri@)",
+            "label": "M:System.Uri.TryCreate(System.String,System.UriKind,System.Uri@)",
+            "properties": {
+              "CharCount": "708"
+            },
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 13,
+            "column": 8
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0004": {
+      "id": "NuGet.0004",
+      "isFeature": false,
+      "description": "NuGet package contains security vulnerabilities.\n\nPackage needs to be upgraded to a newer version that addresses known security vulnerabilities.",
+      "label": "NuGet package contains security vulnerability",
+      "severity": "Optional",
+      "effort": 1
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0003": {
+      "id": "Api.0003",
+      "isFeature": false,
+      "description": "API has a behavioral change in selected .NET version: code and binaries may behave differently at runtime without needing recompilation, but the new behavior might be undesirable and require updates.",
+      "label": "Behavioral change in selected .NET version",
+      "severity": "Potential",
+      "effort": 1
+    }
+  }
+}

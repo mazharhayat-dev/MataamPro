@@ -46,7 +46,7 @@ try
 {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<MataamDbContext>();
-    dbContext.Database.Migrate();
+    dbContext.Database.Migrate()rvice<MataamDbContext>();;
     db.Database.Migrate();
     SeedData.Initialize(db);
 }

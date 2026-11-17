@@ -1,27 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using MataamPro.Models;
-using MataamPro;
+﻿using MataamPro;
 using MataamPro.Data;
-using Microsoft.AspNetCore.Localization;
+using MataamPro.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
-using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
-try
-{
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' was not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-    builder.Services.AddDbContext<MataamDbContext>(options =>
-        options.UseSqlServer(connectionString));
-}
-catch (Exception exception)
-{
-    Console.Error.WriteLine($"Database service registration failed: {exception}");
-    throw;
-}
+builder.Services.AddDbContext<MataamDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<MenuService>();
 builder.Services.AddControllersWithViews();
@@ -42,33 +31,30 @@ app.UseRequestLocalization(new RequestLocalizationOptions()
     .AddSupportedUICultures("en-US"));
 app.UseAuthorization();
 
+// Database Migrate - Azure par LocalDB check ke saath
 try
 {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<MataamDbContext>();
-<<<<<<< HEAD
-    try
+    var conn = app.Configuration.GetConnectionString("DefaultConnection");
+
+    // LocalDB ko Azure Linux par skip karo
+    if (conn != null && !conn.ToLower().Contains("localdb"))
     {
-        var conn = app.Configuration.GetConnectionString("DefaultConnection");
-        if (conn != null && !conn.ToLower().Contains("localdb"))
-        {
-            context.Database.Migrate();
-        }
+        db.Database.Migrate();
+        Console.WriteLine("Database migrated successfully!");
+        SeedData.Initialize(db);
     }
-    catch (Exception ex)
+    else
     {
-        Console.WriteLine("Migration skip: " + ex.Message);
+        Console.WriteLine("LocalDB detected, skipping migration on this platform.");
     }
-=======
-    dbContext.Database.Migrate()rvice<MataamDbContext>();;
-    db.Database.Migrate();
->>>>>>> fdd3bf1a090ec82d4c23b315278d0353c022692d
-    SeedData.Initialize(db);
 }
-catch (Exception exception)
+catch (Exception ex)
 {
-    app.Logger.LogError(exception, "Database migration or initialization failed during application startup.");
-    throw;
+    Console.WriteLine($"Migration skipped: {ex.Message}");
+    app.Logger.LogWarning(ex, "Migration failed, app will continue to run");
+    // throw mat karo, taake app crash na ho
 }
 
 app.MapControllerRoute(

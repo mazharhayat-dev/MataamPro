@@ -1,78 +1,46 @@
 name: Deploy MataamPro to Azure App Service
-
 on:
   push:
-    branches:
-      - main
+    branches: [main, master]
   workflow_dispatch:
-
-permissions:
-  contents: read
-  id-token: write
-
-env:
-  DOTNET_VERSION: '10.0.x'
-  PROJECT_PATH: 'MataamPro.csproj'
-  PUBLISH_PATH: './publish'
-  AZURE_RESOURCE_GROUP: 'MataamProRG'
-  AZURE_WEBAPP_NAME: 'mazharhayatdev'
-  AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-  AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-  AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  AZURE_SQL_CONNECTION_STRING: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     environment:
-      name: production
+      name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v5
-
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v5
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-
-      - name: Restore dependencies
-        run: dotnet restore "${{ env.PROJECT_PATH }}"
-
+          dotnet-version: '10.0.x'
+          
+      - name: Restore
+        run: dotnet restore MataamPro.csproj
+        
       - name: Build
-        run: dotnet build "${{ env.PROJECT_PATH }}" --configuration Release --no-restore
-
-      - name: Publish
-        run: dotnet publish "${{ env.PROJECT_PATH }}" --configuration Release --no-build --output "${{ env.PUBLISH_PATH }}"
-
-      - name: Validate Azure deployment secrets
-        shell: bash
-        run: |
-          test -n "$AZURE_CLIENT_ID" || { echo "::error::Missing AZURE_CLIENT_ID secret"; exit 1; }
-          test -n "$AZURE_TENANT_ID" || { echo "::error::Missing AZURE_TENANT_ID secret"; exit 1; }
-          test -n "$AZURE_SUBSCRIPTION_ID" || { echo "::error::Missing AZURE_SUBSCRIPTION_ID secret"; exit 1; }
-          test -n "$AZURE_SQL_CONNECTION_STRING" || { echo "::error::Missing AZURE_SQL_CONNECTION_STRING secret"; exit 1; }
-
-      - name: Sign in to Azure
+        run: dotnet build MataamPro.csproj -c Release --no-restore
+        
+      - name: Publish Self-Contained
+        run: dotnet publish MataamPro.csproj -c Release -o ./publish -r linux-x64 --self-contained true --no-build
+        
+      - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ env.AZURE_CLIENT_ID }}
-          tenant-id: ${{ env.AZURE_TENANT_ID }}
-          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
-
-      - name: Configure Azure SQL connection string
-        shell: bash
-        run: |
-          az webapp config connection-string set \
-            --resource-group "$AZURE_RESOURCE_GROUP" \
-            --name "$AZURE_WEBAPP_NAME" \
-            --connection-string-type SQLAzure \
-            --settings DefaultConnection="$AZURE_SQL_CONNECTION_STRING"
-
-      - name: Deploy to Azure App Service
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: ${{ env.PUBLISH_PATH }}
+          app-name: 'mazharhayatdev'
+          slot-name: 'Production'
+          package: ./publish

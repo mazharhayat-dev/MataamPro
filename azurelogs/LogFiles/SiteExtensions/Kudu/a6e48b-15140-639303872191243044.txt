@@ -1,0 +1,18 @@
+2026-11-16T00:53:38  PID[15140] Information Unpacking resources...
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Executing Application Insights Profiler agent version 2.6.2201.2106 with arguments: 
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Minimum version enabled on machine: 1.0.0
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Applying logging level: Information
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Instrumentation key: 44f40355-c658-4e1d-92f7-570dfe8b318b
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Application Insights Profiler endpoint: https://profiler.monitor.azure.com/
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Application Insights endpoint: https://westus3-1.in.applicationinsights.azure.com/v2/track/
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Runtime Environment: Antares
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Support files: C:\local\Temp\jobs\continuous\ApplicationInsightsProfiler3\uh3g4gzy.kcp\spsupport
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Providing usage data (to opt out set the AppSettings ApplicationInsightsProvideUsageTelemetryData with the value "false"): True
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Engine mode: Sampling
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Application Insights AppId: cf3b9830-a87d-40d0-a3b0-c2a24d470fea
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Press 'Ctrl+C' to exit Application Insights Profiler.
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Set up shutdown handler.
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Shutdown handler set to watch C:\local\Temp\JobsShutdown\continuous\ApplicationInsightsProfiler3\2yiwqyae.gsm.
+2026-11-16T00:53:38  PID[15140] Information 11-16 00:53:38 Information: Starting main process
+2026-11-16T00:53:39  PID[15140] Information 11-16 00:53:39 Critical: Profiler is not supported on Dynamic, Free or Shared sites. Please upgrade your site to Basic or above.
+2026-11-16T00:53:39  PID[15140] Information 11-16 00:53:39 Information: Agent started to stand by.

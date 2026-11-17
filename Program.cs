@@ -46,7 +46,18 @@ try
 {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<MataamDbContext>();
-    db.Database.Migrate();
+    try
+    {
+        var conn = app.Configuration.GetConnectionString("DefaultConnection");
+        if (conn != null && !conn.ToLower().Contains("localdb"))
+        {
+            context.Database.Migrate();
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Migration skip: " + ex.Message);
+    }
     SeedData.Initialize(db);
 }
 catch (Exception exception)

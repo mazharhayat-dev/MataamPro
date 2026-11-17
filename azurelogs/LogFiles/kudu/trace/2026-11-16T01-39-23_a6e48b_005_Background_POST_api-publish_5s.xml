@@ -1,0 +1,115 @@
+<step title="BackgroundTrace" date="2026-11-16T01:39:23.834" instance="a6e48b" url="/api/publish" method="POST" >
+  <step title="Updating shutdown sentinel last write time" date="2026-11-16T01:39:23.834" SemaphoreCount="7" /><!-- duration: 16ms -->
+  <step title="LockFile &apos;C:\home\site\locks\deployments.lock&apos; acquired" date="2026-11-16T01:39:23.850" /><!-- duration: 0ms -->
+  <step title="Creating temporary deployment" date="2026-11-16T01:39:23.850" /><!-- duration: 31ms -->
+  <step title="Performing fetch based deployment" date="2026-11-16T01:39:23.881" >
+    <step title="Fetching changes." date="2026-11-16T01:39:23.928" /><!-- duration: 0ms -->
+    <step title="Starting LocalZipHandler" date="2026-11-16T01:39:23.944" /><!-- duration: 0ms -->
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file C:\local\Temp\zipdeploy\vhzznzjp.zip (42.08 MB) to C:\local\Temp\zipdeploy\extracted" date="2026-11-16T01:39:23.959" /><!-- duration: 0ms -->
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file C:\local\Temp\zipdeploy\vhzznzjp.zip (42.08 MB) to C:\local\Temp\zipdeploy\extracted" date="2026-11-16T01:39:23.959" >
+      <step title="Renaming extractTargetDirectory(C:\local\Temp\zipdeploy\extracted) to tempDirectory(C:\local\Temp\zipdeploy\ltnohmin.50g)" date="2026-11-16T01:39:23.975" /><!-- duration: 0ms -->
+      <step title="Extracting 327 entries to C:\local\Temp\zipdeploy\extracted directory" date="2026-11-16T01:39:23.991" >
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\Azure.Core.dll ..." date="2026-11-16T01:39:23.991" /><!-- duration: 16ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\Azure.Identity.dll ..." date="2026-11-16T01:39:24.006" /><!-- duration: 16ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\MataamPro ..." date="2026-11-16T01:39:24.022" /><!-- duration: 0ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\MataamPro.deps.json ..." date="2026-11-16T01:39:24.037" /><!-- duration: 0ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\MataamPro.dll ..." date="2026-11-16T01:39:24.037" /><!-- duration: 16ms -->
+        <step title="Omitting extracting file traces ..." date="2026-11-16T01:39:24.053" /><!-- duration: 0ms -->
+      </step><!-- duration: 1203ms -->
+    </step><!-- duration: 1234ms -->
+    <step title="Before sending BuildRequestReceived status to /api/updatedeploystatus" date="2026-11-16T01:39:25.209" /><!-- duration: 0ms -->
+    <step title="DeploymentManager.Deploy(id:01d76cad828a4c2686b857908a6816e4)" date="2026-11-16T01:39:25.209" >
+      <step title="Collecting changeset information" date="2026-11-16T01:39:25.225" /><!-- duration: 16ms -->
+      <step title="Updating submodules" date="2026-11-16T01:39:25.241" >
+        <step title="Updating submodules." date="2026-11-16T01:39:25.272" /><!-- duration: 0ms -->
+      </step><!-- duration: 31ms -->
+      <step title="Preparing deployment for commit id &apos;01d76cad82&apos;." date="2026-11-16T01:39:25.303" /><!-- duration: 0ms -->
+      <step title="Determining deployment builder" date="2026-11-16T01:39:25.350" >
+        <step title="OneDeploy deployment with artifact type: Zip, RunFromLocalZip: False, IgnoreStack: False" date="2026-11-16T01:39:25.350" /><!-- duration: 0ms -->
+        <step title="Builder is OneDeployBuilder" date="2026-11-16T01:39:25.366" /><!-- duration: 0ms -->
+      </step><!-- duration: 16ms -->
+      <step title="Copying SSH keys" date="2026-11-16T01:39:25.381" /><!-- duration: 0ms -->
+      <step title="Building" date="2026-11-16T01:39:25.397" >
+        <step title="Running build. Project type: OneDeploy" date="2026-11-16T01:39:25.412" /><!-- duration: 0ms -->
+        <step title="Copying the manifest" date="2026-11-16T01:39:25.444" /><!-- duration: 0ms -->
+        <step title="Clean deploying to C:\home\site\wwwroot" date="2026-11-16T01:39:25.475" /><!-- duration: 0ms -->
+        <step title="Generating deployment script." date="2026-11-16T01:39:25.506" /><!-- duration: 0ms -->
+        <step title="Generating deployment script" date="2026-11-16T01:39:25.506" >
+          <step title="Using cached version of the deployment script for command: -y --no-dot-deployment -r &quot;C:\local\Temp\zipdeploy\extracted&quot; -o &quot;C:\home\site\deployments\tools&quot; --basic --sitePath &quot;C:\local\Temp\zipdeploy\extracted&quot;" date="2026-11-16T01:39:25.522" /><!-- duration: 0ms -->
+          <step title="Using cached version of deployment script (command: &apos;azure -y --no-dot-deployment -r &quot;C:\local\Temp\zipdeploy\extracted&quot; -o &quot;C:\home\site\deployments\tools&quot; --basic --sitePath &quot;C:\local\Temp\zipdeploy\extracted&quot;&apos;)." date="2026-11-16T01:39:25.537" /><!-- duration: 0ms -->
+        </step><!-- duration: 31ms -->
+        <step title="Running deployment command..." date="2026-11-16T01:39:25.569" /><!-- duration: 0ms -->
+        <step title="Command: &quot;C:\home\site\deployments\tools\deploy.cmd&quot;" date="2026-11-16T01:39:25.569" /><!-- duration: 16ms -->
+        <step title="Executing external process" date="2026-11-16T01:39:25.584" type="process" path="starter.cmd" arguments="&quot;C:\home\site\deployments\tools\deploy.cmd&quot;" >
+          <step title="Handling Basic Web Site deployment." date="2026-11-16T01:39:25.694" /><!-- duration: 16ms -->
+          <step title="KuduSync.NET from: &apos;C:\local\Temp\zipdeploy\extracted&apos; to: &apos;C:\home\site\wwwroot&apos; (max parallel operations: 1, destination is not a Managed Azure Files share)" date="2026-11-16T01:39:25.772" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;infra\main.parameters.example.json&apos;" date="2026-11-16T01:39:25.881" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish\appsettings.Development.json&apos;" date="2026-11-16T01:39:25.881" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;publish\appsettings.json&apos;" date="2026-11-16T01:39:25.897" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish\MataamPro.deps.json&apos;" date="2026-11-16T01:39:25.897" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;publish\MataamPro.runtimeconfig.json&apos;" date="2026-11-16T01:39:25.912" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish\MataamPro.staticwebassets.endpoints.json&apos;" date="2026-11-16T01:39:25.912" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;publish\web.config&apos;" date="2026-11-16T01:39:25.928" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish\infra\main.parameters.example.json&apos;" date="2026-11-16T01:39:25.928" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;publish_for_azure\appsettings.Development.json&apos;" date="2026-11-16T01:39:25.944" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\appsettings.json&apos;" date="2026-11-16T01:39:25.944" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;publish_for_azure\dotnet-tools.json&apos;" date="2026-11-16T01:39:25.959" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\MataamPro.deps.json&apos;" date="2026-11-16T01:39:25.959" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;publish_for_azure\MataamPro.runtimeconfig.json&apos;" date="2026-11-16T01:39:25.975" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\MataamPro.staticwebassets.endpoints.json&apos;" date="2026-11-16T01:39:25.975" /><!-- duration: 16ms -->
+          <step title="Deleting file: &apos;publish_for_azure\web.config&apos;" date="2026-11-16T01:39:25.991" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\infra\main.parameters.example.json&apos;" date="2026-11-16T01:39:26.006" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\publish\appsettings.Development.json&apos;" date="2026-11-16T01:39:26.006" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\publish\appsettings.json&apos;" date="2026-11-16T01:39:26.022" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\publish\MataamPro.deps.json&apos;" date="2026-11-16T01:39:26.037" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\publish\MataamPro.runtimeconfig.json&apos;" date="2026-11-16T01:39:26.037" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\publish\MataamPro.staticwebassets.endpoints.json&apos;" date="2026-11-16T01:39:26.053" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\publish\web.config&apos;" date="2026-11-16T01:39:26.053" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;publish_for_azure\publish\infra\main.parameters.example.json&apos;" date="2026-11-16T01:39:26.069" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;App_Offline.htm&apos;" date="2026-11-16T01:39:26.069" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;aspnetcorev2_inprocess.dll&apos;" date="2026-11-16T01:39:26.084" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;clretwrc.dll&apos;" date="2026-11-16T01:39:26.084" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;clrgc.dll&apos;" date="2026-11-16T01:39:26.100" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;clrjit.dll&apos;" date="2026-11-16T01:39:26.162" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;coreclr.dll&apos;" date="2026-11-16T01:39:26.162" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;createdump.exe&apos;" date="2026-11-16T01:39:26.178" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;dotnet-tools.json&apos;" date="2026-11-16T01:39:26.178" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;hostfxr.dll&apos;" date="2026-11-16T01:39:26.194" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;hostpolicy.dll&apos;" date="2026-11-16T01:39:26.194" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;MataamPro.exe&apos;" date="2026-11-16T01:39:26.209" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Antiforgery.dll&apos;" date="2026-11-16T01:39:26.209" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Authentication.Abstractions.dll&apos;" date="2026-11-16T01:39:26.225" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Authentication.BearerToken.dll&apos;" date="2026-11-16T01:39:26.225" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Authentication.Cookies.dll&apos;" date="2026-11-16T01:39:26.241" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Authentication.Core.dll&apos;" date="2026-11-16T01:39:26.241" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Authentication.dll&apos;" date="2026-11-16T01:39:26.256" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Authentication.OAuth.dll&apos;" date="2026-11-16T01:39:26.256" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Authorization.dll&apos;" date="2026-11-16T01:39:26.272" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Authorization.Policy.dll&apos;" date="2026-11-16T01:39:26.272" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Components.Authorization.dll&apos;" date="2026-11-16T01:39:26.287" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Components.dll&apos;" date="2026-11-16T01:39:26.287" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Components.Endpoints.dll&apos;" date="2026-11-16T01:39:26.303" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Components.Forms.dll&apos;" date="2026-11-16T01:39:26.303" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Components.Server.dll&apos;" date="2026-11-16T01:39:26.319" /><!-- duration: 0ms -->
+          <step title="Deleting file: &apos;Microsoft.AspNetCore.Components.Web.dll&apos;" date="2026-11-16T01:39:26.319" /><!-- duration: 0ms -->
+          <step title="Omitting next output lines..." date="2026-11-16T01:39:26.319" /><!-- duration: 16ms -->
+          <step title="Finished successfully." date="2026-11-16T01:39:27.912" /><!-- duration: 0ms -->
+        </step><!-- duration: 2328ms -->
+        <step title="Build completed succesfully." date="2026-11-16T01:39:27.944" /><!-- duration: 0ms -->
+        <step title="Running post deployment command(s)..." date="2026-11-16T01:39:27.975" /><!-- duration: 0ms -->
+        <step title="Requesting site restart" date="2026-11-16T01:39:28.006" /><!-- duration: 0ms -->
+        <step title="Requesting site restart" date="2026-11-16T01:39:28.022" /><!-- duration: 0ms -->
+        <step title="Requesting site restart. Attempt #1" date="2026-11-16T01:39:28.053" /><!-- duration: 0ms -->
+        <step title="Requesting site restart. Attempt #1" date="2026-11-16T01:39:28.069" /><!-- duration: 0ms -->
+        <step title="Successfully requested a restart. Attempt #1" date="2026-11-16T01:39:28.397" /><!-- duration: 16ms -->
+        <step title="Successfully requested a restart. Attempt #1" date="2026-11-16T01:39:28.412" /><!-- duration: 0ms -->
+        <step title="Deployment successful. DEPLOYMENTINFO: deploymentPath = OneDeploy, deployer = OneDeploy, os = windows, sku = Free, siteName = mazharhayatdev, siteHostName = mazharhayatdev-fwetgwdjdvabcaf3.westus3-01.azurewebsites.net, deploymentStatus = Success" date="2026-11-16T01:39:28.428" /><!-- duration: 16ms -->
+      </step><!-- duration: 3109ms -->
+    </step><!-- duration: 3297ms -->
+    <step title="Cleaning up temp files" date="2026-11-16T01:39:28.506" /><!-- duration: 0ms -->
+    <step title="Skip function trigger and logicapp sync because function is not enabled." date="2026-11-16T01:39:28.522" /><!-- duration: 0ms -->
+  </step><!-- duration: 4656ms -->
+  <step title="Deployment completed. Total deployment time: 4661ms" date="2026-11-16T01:39:28.553" /><!-- duration: 0ms -->
+  <step title="LockFile &apos;C:\home\site\locks\deployments.lock&apos; released" date="2026-11-16T01:39:28.553" /><!-- duration: 0ms -->
+  <step title="Deleting shutdown sentinel file" date="2026-11-16T01:39:28.553" SemaphoreCount="8" /><!-- duration: 16ms -->
+</step><!-- duration: 4734ms -->

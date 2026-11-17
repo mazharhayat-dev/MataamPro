@@ -1,0 +1,114 @@
+<step title="BackgroundTrace" date="2026-11-15T20:10:49.184" instance="a6e48b" url="/api/publish" method="POST" >
+  <step title="Updating shutdown sentinel last write time" date="2026-11-15T20:10:49.184" SemaphoreCount="7" /><!-- duration: 16ms -->
+  <step title="LockFile &apos;C:\home\site\locks\deployments.lock&apos; acquired" date="2026-11-15T20:10:49.200" /><!-- duration: 0ms -->
+  <step title="Creating temporary deployment" date="2026-11-15T20:10:49.200" /><!-- duration: 47ms -->
+  <step title="Performing fetch based deployment" date="2026-11-15T20:10:49.247" >
+    <step title="Fetching changes." date="2026-11-15T20:10:49.278" /><!-- duration: 16ms -->
+    <step title="Starting LocalZipHandler" date="2026-11-15T20:10:49.294" /><!-- duration: 16ms -->
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file C:\local\Temp\zipdeploy\0mww3wz1.zip (42.08 MB) to C:\local\Temp\zipdeploy\extracted" date="2026-11-15T20:10:49.325" /><!-- duration: 0ms -->
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file C:\local\Temp\zipdeploy\0mww3wz1.zip (42.08 MB) to C:\local\Temp\zipdeploy\extracted" date="2026-11-15T20:10:49.325" >
+      <step title="Extracting 327 entries to C:\local\Temp\zipdeploy\extracted directory" date="2026-11-15T20:10:49.341" >
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\Azure.Core.dll ..." date="2026-11-15T20:10:49.356" /><!-- duration: 16ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\Azure.Identity.dll ..." date="2026-11-15T20:10:49.372" /><!-- duration: 0ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\MataamPro ..." date="2026-11-15T20:10:49.388" /><!-- duration: 0ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\MataamPro.deps.json ..." date="2026-11-15T20:10:49.388" /><!-- duration: 0ms -->
+        <step title="Extracting to C:\local\Temp\zipdeploy\extracted\MataamPro.runtimeconfig.json ..." date="2026-11-15T20:10:49.388" /><!-- duration: 16ms -->
+        <step title="Omitting extracting file traces ..." date="2026-11-15T20:10:49.403" /><!-- duration: 0ms -->
+      </step><!-- duration: 1266ms -->
+    </step><!-- duration: 1281ms -->
+    <step title="Before sending BuildRequestReceived status to /api/updatedeploystatus" date="2026-11-15T20:10:50.606" /><!-- duration: 16ms -->
+    <step title="DeploymentManager.Deploy(id:0f4711106b9246ab89f525e7b3324257)" date="2026-11-15T20:10:50.622" >
+      <step title="Collecting changeset information" date="2026-11-15T20:10:50.622" /><!-- duration: 31ms -->
+      <step title="Updating submodules" date="2026-11-15T20:10:50.653" >
+        <step title="Updating submodules." date="2026-11-15T20:10:50.684" /><!-- duration: 0ms -->
+      </step><!-- duration: 31ms -->
+      <step title="Preparing deployment for commit id &apos;0f4711106b&apos;." date="2026-11-15T20:10:50.716" /><!-- duration: 0ms -->
+      <step title="Determining deployment builder" date="2026-11-15T20:10:50.731" >
+        <step title="OneDeploy deployment with artifact type: Zip, RunFromLocalZip: False, IgnoreStack: False" date="2026-11-15T20:10:50.747" /><!-- duration: 0ms -->
+        <step title="Builder is OneDeployBuilder" date="2026-11-15T20:10:50.763" /><!-- duration: 0ms -->
+      </step><!-- duration: 31ms -->
+      <step title="Copying SSH keys" date="2026-11-15T20:10:50.778" /><!-- duration: 16ms -->
+      <step title="Building" date="2026-11-15T20:10:50.809" >
+        <step title="Running build. Project type: OneDeploy" date="2026-11-15T20:10:50.841" /><!-- duration: 0ms -->
+        <step title="Copying the manifest" date="2026-11-15T20:10:50.872" /><!-- duration: 0ms -->
+        <step title="Clean deploying to C:\home\site\wwwroot" date="2026-11-15T20:10:50.903" /><!-- duration: 0ms -->
+        <step title="Generating deployment script." date="2026-11-15T20:10:50.934" /><!-- duration: 0ms -->
+        <step title="Generating deployment script" date="2026-11-15T20:10:50.934" >
+          <step title="Using cached version of the deployment script for command: -y --no-dot-deployment -r &quot;C:\local\Temp\zipdeploy\extracted&quot; -o &quot;C:\home\site\deployments\tools&quot; --basic --sitePath &quot;C:\local\Temp\zipdeploy\extracted&quot;" date="2026-11-15T20:10:50.950" /><!-- duration: 0ms -->
+          <step title="Using cached version of deployment script (command: &apos;azure -y --no-dot-deployment -r &quot;C:\local\Temp\zipdeploy\extracted&quot; -o &quot;C:\home\site\deployments\tools&quot; --basic --sitePath &quot;C:\local\Temp\zipdeploy\extracted&quot;&apos;)." date="2026-11-15T20:10:50.966" /><!-- duration: 0ms -->
+        </step><!-- duration: 31ms -->
+        <step title="Running deployment command..." date="2026-11-15T20:10:50.997" /><!-- duration: 0ms -->
+        <step title="Command: &quot;C:\home\site\deployments\tools\deploy.cmd&quot;" date="2026-11-15T20:10:51.013" /><!-- duration: 0ms -->
+        <step title="Executing external process" date="2026-11-15T20:10:51.013" type="process" path="starter.cmd" arguments="&quot;C:\home\site\deployments\tools\deploy.cmd&quot;" >
+          <step title="Handling Basic Web Site deployment." date="2026-11-15T20:10:51.153" /><!-- duration: 0ms -->
+          <step title="Creating app_offline.htm" date="2026-11-15T20:10:51.216" /><!-- duration: 0ms -->
+          <step title="KuduSync.NET from: &apos;C:\local\Temp\zipdeploy\extracted&apos; to: &apos;C:\home\site\wwwroot&apos; (max parallel operations: 1, destination is not a Managed Azure Files share)" date="2026-11-15T20:10:51.794" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;appsettings.Development.json&apos;" date="2026-11-15T20:10:51.809" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;appsettings.json&apos;" date="2026-11-15T20:10:51.809" /><!-- duration: 16ms -->
+          <step title="Copying file: &apos;Azure.Core.dll&apos;" date="2026-11-15T20:10:51.825" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Azure.Identity.dll&apos;" date="2026-11-15T20:10:51.841" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;MataamPro&apos;" date="2026-11-15T20:10:51.841" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;MataamPro.deps.json&apos;" date="2026-11-15T20:10:51.856" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;MataamPro.dll&apos;" date="2026-11-15T20:10:51.856" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;MataamPro.pdb&apos;" date="2026-11-15T20:10:51.872" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;MataamPro.runtimeconfig.json&apos;" date="2026-11-15T20:10:51.872" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;MataamPro.staticwebassets.endpoints.json&apos;" date="2026-11-15T20:10:51.888" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.Bcl.AsyncInterfaces.dll&apos;" date="2026-11-15T20:10:51.888" /><!-- duration: 16ms -->
+          <step title="Copying file: &apos;Microsoft.Data.SqlClient.dll&apos;" date="2026-11-15T20:10:51.903" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.EntityFrameworkCore.Abstractions.dll&apos;" date="2026-11-15T20:10:51.903" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.EntityFrameworkCore.dll&apos;" date="2026-11-15T20:10:51.919" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.EntityFrameworkCore.InMemory.dll&apos;" date="2026-11-15T20:10:51.919" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.EntityFrameworkCore.Relational.dll&apos;" date="2026-11-15T20:10:51.934" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.EntityFrameworkCore.SqlServer.dll&apos;" date="2026-11-15T20:10:51.934" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.Identity.Client.Broker.dll&apos;" date="2026-11-15T20:10:51.950" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.Identity.Client.dll&apos;" date="2026-11-15T20:10:51.950" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.Identity.Client.Extensions.Msal.dll&apos;" date="2026-11-15T20:10:51.966" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.Identity.Client.NativeInterop.dll&apos;" date="2026-11-15T20:10:51.966" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.IdentityModel.Abstractions.dll&apos;" date="2026-11-15T20:10:51.981" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.IdentityModel.JsonWebTokens.dll&apos;" date="2026-11-15T20:10:51.981" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.IdentityModel.Logging.dll&apos;" date="2026-11-15T20:10:51.997" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.IdentityModel.Protocols.dll&apos;" date="2026-11-15T20:10:51.997" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.IdentityModel.Protocols.OpenIdConnect.dll&apos;" date="2026-11-15T20:10:52.013" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.IdentityModel.Tokens.dll&apos;" date="2026-11-15T20:10:52.013" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;Microsoft.SqlServer.Server.dll&apos;" date="2026-11-15T20:10:52.028" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;System.ClientModel.dll&apos;" date="2026-11-15T20:10:52.028" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;System.Configuration.ConfigurationManager.dll&apos;" date="2026-11-15T20:10:52.044" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;System.IdentityModel.Tokens.Jwt.dll&apos;" date="2026-11-15T20:10:52.044" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;System.Memory.Data.dll&apos;" date="2026-11-15T20:10:52.059" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;System.Security.Cryptography.ProtectedData.dll&apos;" date="2026-11-15T20:10:52.059" /><!-- duration: 16ms -->
+          <step title="Copying file: &apos;ar-SA\MataamPro.resources.dll&apos;" date="2026-11-15T20:10:52.091" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;cs\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.091" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;de\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.106" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;en-US\MataamPro.resources.dll&apos;" date="2026-11-15T20:10:52.106" /><!-- duration: 16ms -->
+          <step title="Copying file: &apos;es\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.122" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;fr\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.122" /><!-- duration: 16ms -->
+          <step title="Copying file: &apos;it\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.153" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;ja\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.153" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;ko\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.169" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;pl\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.169" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;pt-BR\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.184" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;ru\Microsoft.Data.SqlClient.resources.dll&apos;" date="2026-11-15T20:10:52.184" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;runtimes\linux-x64\native\libmsalruntime.so&apos;" date="2026-11-15T20:10:52.200" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;runtimes\osx-arm64\native\msalruntime_arm64.dylib&apos;" date="2026-11-15T20:10:52.200" /><!-- duration: 0ms -->
+          <step title="Copying file: &apos;runtimes\osx-x64\native\msalruntime.dylib&apos;" date="2026-11-15T20:10:52.216" /><!-- duration: 0ms -->
+          <step title="Omitting next output lines..." date="2026-11-15T20:10:52.216" /><!-- duration: 0ms -->
+          <step title="Finished successfully." date="2026-11-15T20:10:53.278" /><!-- duration: 0ms -->
+        </step><!-- duration: 2266ms -->
+        <step title="Build completed succesfully." date="2026-11-15T20:10:53.309" /><!-- duration: 0ms -->
+        <step title="Running post deployment command(s)..." date="2026-11-15T20:10:53.325" /><!-- duration: 0ms -->
+        <step title="Requesting site restart" date="2026-11-15T20:10:53.356" /><!-- duration: 16ms -->
+        <step title="Requesting site restart" date="2026-11-15T20:10:53.372" /><!-- duration: 0ms -->
+        <step title="Requesting site restart. Attempt #1" date="2026-11-15T20:10:53.403" /><!-- duration: 0ms -->
+        <step title="Requesting site restart. Attempt #1" date="2026-11-15T20:10:53.403" /><!-- duration: 0ms -->
+        <step title="Successfully requested a restart. Attempt #1" date="2026-11-15T20:10:53.700" /><!-- duration: 0ms -->
+        <step title="Successfully requested a restart. Attempt #1" date="2026-11-15T20:10:53.700" /><!-- duration: 0ms -->
+        <step title="Deployment successful. DEPLOYMENTINFO: deploymentPath = OneDeploy, deployer = OneDeploy, os = windows, sku = Free, siteName = mazharhayatdev, siteHostName = mazharhayatdev-fwetgwdjdvabcaf3.westus3-01.azurewebsites.net, deploymentStatus = Success" date="2026-11-15T20:10:53.731" /><!-- duration: 0ms -->
+      </step><!-- duration: 2984ms -->
+    </step><!-- duration: 3172ms -->
+    <step title="Cleaning up temp files" date="2026-11-15T20:10:53.809" /><!-- duration: 0ms -->
+    <step title="Skip function trigger and logicapp sync because function is not enabled." date="2026-11-15T20:10:53.809" /><!-- duration: 0ms -->
+  </step><!-- duration: 4594ms -->
+  <step title="Deployment completed. Total deployment time: 4594ms" date="2026-11-15T20:10:53.841" /><!-- duration: 0ms -->
+  <step title="LockFile &apos;C:\home\site\locks\deployments.lock&apos; released" date="2026-11-15T20:10:53.841" /><!-- duration: 16ms -->
+  <step title="Deleting shutdown sentinel file" date="2026-11-15T20:10:53.856" SemaphoreCount="8" /><!-- duration: 0ms -->
+</step><!-- duration: 4672ms -->

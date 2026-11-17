@@ -15,6 +15,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+<<<<<<< HEAD
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -25,16 +26,41 @@ jobs:
         run: dotnet build MataamPro.csproj -c Release --no-restore
       - name: Publish
         run: dotnet publish MataamPro.csproj -c Release -o ./publish --no-build
+=======
+      
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          
+      - name: Restore
+        run: dotnet restore MataamPro.csproj
+        
+      - name: Build
+        run: dotnet build MataamPro.csproj -c Release --no-restore
+        
+      - name: Publish Self-Contained
+        run: dotnet publish MataamPro.csproj -c Release -o ./publish -r linux-x64 --self-contained true --no-build
+        
+>>>>>>> fdd3bf1a090ec82d4c23b315278d0353c022692d
       - name: Login to Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+<<<<<<< HEAD
+=======
+          
+>>>>>>> fdd3bf1a090ec82d4c23b315278d0353c022692d
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'mazharhayatdev'
+<<<<<<< HEAD
           slot-name: 'production'
+=======
+          slot-name: 'Production'
+>>>>>>> fdd3bf1a090ec82d4c23b315278d0353c022692d
           package: ./publish

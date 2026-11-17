@@ -46,6 +46,7 @@ try
 {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<MataamDbContext>();
+<<<<<<< HEAD
     try
     {
         var conn = app.Configuration.GetConnectionString("DefaultConnection");
@@ -58,6 +59,10 @@ try
     {
         Console.WriteLine("Migration skip: " + ex.Message);
     }
+=======
+    dbContext.Database.Migrate()rvice<MataamDbContext>();;
+    db.Database.Migrate();
+>>>>>>> fdd3bf1a090ec82d4c23b315278d0353c022692d
     SeedData.Initialize(db);
 }
 catch (Exception exception)

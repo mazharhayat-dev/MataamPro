@@ -13,8 +13,17 @@ builder.Services.AddDbContext<MataamDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<MenuService>();
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
+
+// --- FIX 1: Localization Register Karo ---
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization();
+
+builder.Services.AddRazorPages()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization();
 
 var app = builder.Build();
 
@@ -25,36 +34,34 @@ if (app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 app.UseRouting();
+
+// --- FIX 2: Localization Middleware Sahi Jagah ---
+var supportedCultures = new[] { "en-US", "ar-SA", "ur-PK" };
 app.UseRequestLocalization(new RequestLocalizationOptions()
     .SetDefaultCulture("en-US")
-    .AddSupportedCultures("en-US")
-    .AddSupportedUICultures("en-US"));
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures));
+
 app.UseAuthorization();
 
-// Database Migrate - Azure par LocalDB check ke saath
+// Database Migrate
 try
 {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<MataamDbContext>();
     var conn = app.Configuration.GetConnectionString("DefaultConnection");
 
-    // LocalDB ko Azure Linux par skip karo
     if (conn != null && !conn.ToLower().Contains("localdb"))
     {
         db.Database.Migrate();
         Console.WriteLine("Database migrated successfully!");
         SeedData.Initialize(db);
     }
-    else
-    {
-        Console.WriteLine("LocalDB detected, skipping migration on this platform.");
-    }
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Migration skipped: {ex.Message}");
-    app.Logger.LogWarning(ex, "Migration failed, app will continue to run");
-    // throw mat karo, taake app crash na ho
+    Console.WriteLine($"Migration failed: {ex.Message}");
+    app.Logger.LogError(ex, "Migration failed");
 }
 
 app.MapControllerRoute(
